@@ -1,28 +1,28 @@
-# Setup Guide: Connect inCruises Landing Page to Google Sheets
+# Guida di Configurazione: Collegare la Landing Page inCruises a Google Sheets
 
-## Overview
-This guide explains how to connect the inCruises landing page form to a Google Sheet to automatically collect customer inquiries about discounted travel offers.
+## Panoramica
+Questa guida spiega come collegare il modulo della landing page inCruises a un Foglio Google per raccogliere automaticamente richieste di clienti su offerte di viaggio scontato.
 
-## Features Included
+## Funzionalità Incluse
 
-The landing page includes the following fields:
+La landing page include i seguenti campi:
 
-- **Data Richiesta** (Request Date) - Automatically captured
-- **Nome Completo** (Full Name) - Customer name
-- **Email** - Customer email address
-- **Telefono** (Phone) - Optional phone number
-- **Tipo di Viaggio** (Travel Type) - Crociera/Hotel/Tour/Pacchetto/Altro
-- **Destinazione Preferita** (Preferred Destination) - Customer destination preference
-- **Budget Approssimativo** (Approximate Budget) - Price range in euros
-- **Periodo Preferito** (Preferred Period) - Travel month/year
-- **Messaggio** (Message) - Additional comments or questions
+- **Data Richiesta** - Catturata automaticamente
+- **Nome Completo** - Nome del cliente
+- **Email** - Indirizzo email del cliente
+- **Telefono** - Numero di telefono opzionale
+- **Tipo di Viaggio** - Crociera/Hotel/Tour/Pacchetto/Altro
+- **Destinazione Preferita** - Preferenza di destinazione del cliente
+- **Budget Approssimativo** - Fascia di prezzo in euro
+- **Periodo Preferito** - Mese/anno del viaggio
+- **Messaggio** - Commenti o domande aggiuntive
 
-## Step 1: Create a Google Sheet
+## Passaggio 1: Crea un Foglio Google
 
-1. Go to [Google Sheets](https://sheets.google.com)
-2. Click "+ Create" to start a new spreadsheet
-3. Name it: "inCruises Customer Inquiries"
-4. Create column headers in the first row:
+1. Vai a [Google Sheets](https://sheets.google.com)
+2. Fai clic su "+ Crea" per avviare un nuovo foglio di lavoro
+3. Nominalo: "Richieste inCruises"
+4. Crea gli intestazioni di colonna nella prima riga:
    - A1: Data Richiesta
    - B1: Nome Completo
    - C1: Email
@@ -33,10 +33,10 @@ The landing page includes the following fields:
    - H1: Periodo
    - I1: Messaggio
 
-## Step 2: Create a Google Apps Script
+## Passaggio 2: Crea un Google Apps Script
 
-1. In your Google Sheet, go to **Tools** → **Script editor**
-2. Replace all code with the following script:
+1. Nel tuo Foglio Google, vai a **Strumenti → Editor di script**
+2. Sostituisci tutto il codice con il seguente script:
 
 ```javascript
 function doPost(e) {
@@ -61,104 +61,71 @@ function doPost(e) {
     return ContentService.createTextOutput(JSON.stringify({success: true}))
       .setMimeType(ContentService.MimeType.JSON);
   } catch (error) {
-    Logger.log('Error: ' + error);
+    Logger.log('Errore: ' + error);
     return ContentService.createTextOutput(JSON.stringify({success: false, error: error.toString()}))
       .setMimeType(ContentService.MimeType.JSON);
   }
 }
 ```
 
-3. Save the script with a name like "inCruises Form Handler"
-4. Click **Deploy** → **New deployment**
-5. Choose type: **Web app**
-6. Set "Execute as" to your Google account
-7. Set "Who has access" to **Anyone**
-8. Click **Deploy**
-9. Copy the deployment URL (it looks like: `https://script.google.com/macros/d/YOUR_SCRIPT_ID/userweb`)
+3. Salva lo script con un nome come "Gestore Modulo inCruises"
+4. Fai clic su **Distribuisci → Nuova distribuzione**
+5. Scegli tipo: **App Web**
+6. Imposta "Esegui come" al tuo account Google
+7. Imposta "Chi ha accesso" su **Tutti**
+8. Fai clic su **Distribuisci**
+9. Copia l'URL di distribuzione (simile a: `https://script.google.com/macros/d/YOUR_SCRIPT_ID/userweb`)
 
-## Step 3: Update the HTML Form
+## Passaggio 3: Aggiorna il Modulo HTML
 
-1. Open the `index.html` file
-2. Find the line with `<form id="inquiryForm">`
-3. Replace it with (using your deployment URL):
+1. Apri il file `index.html`
+2. Trova la riga con `<form id="inquiryForm">`
+3. Sostituiscila con:
 
 ```html
-<form id="inquiryForm" onsubmit="submitForm(event)">
+<form id="inquiryForm" onsubmit="submitInquiryForm(event)">
 ```
 
-4. Find the closing `</form>` tag and add this JavaScript code before `</body>`:
+4. Trova il tag di chiusura `</form>` e aggiungi questo codice JavaScript prima di `</body>`:
 
 ```html
+<script src="google-sheets-integration.js"></script>
 <script>
-function submitForm(event) {
-    event.preventDefault();
-    
-    const formData = {
-        nome: document.getElementById('nome').value,
-        email: document.getElementById('email').value,
-        telefono: document.getElementById('telefono').value,
-        data_richiesta: document.getElementById('data_richiesta').value,
-        tipo_viaggio: document.getElementById('tipo_viaggio').value,
-        destinazione: document.getElementById('destinazione').value,
-        budget: document.getElementById('budget').value,
-        periodo: document.getElementById('periodo').value,
-        messaggio: document.getElementById('messaggio').value
-    };
-    
-    // Replace with your Google Apps Script deployment URL
-    const deploymentUrl = 'https://script.google.com/macros/d/YOUR_SCRIPT_ID/userweb';
-    
-    fetch(deploymentUrl, {
-        method: 'POST',
-        body: JSON.stringify(formData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Grazie per la tua richiesta! Ti contatteremo presto.');
-            document.getElementById('inquiryForm').reset();
-        } else {
-            alert('Errore nell\'invio del modulo. Per favore riprova.');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Errore di connessione. Per favore riprova.');
-    });
-}
+  // Sostituisci con l'URL di distribuzione di Google Apps Script
+  const GOOGLE_SHEETS_DEPLOYMENT_URL = 'https://script.google.com/macros/d/YOUR_SCRIPT_ID/userweb';
 </script>
 ```
 
-## Step 4: Get Your Script ID
+## Passaggio 4: Ottieni il tuo ID Script
 
-1. Go back to your Google Apps Script
-2. Copy the Project ID from the project settings
-3. Your deployment URL should be: `https://script.google.com/macros/d/YOUR_PROJECT_ID/userweb`
+1. Torna a Google Apps Script
+2. Copia l'ID del progetto dalle impostazioni del progetto
+3. L'URL di distribuzione dovrebbe essere: `https://script.google.com/macros/d/YOUR_PROJECT_ID/userweb`
 
-## Step 5: Test the Form
+## Passaggio 5: Testa il Modulo
 
-1. Deploy the updated HTML page
-2. Fill out the form on the landing page
-3. Click "Invia Richiesta" (Submit Request)
-4. Check your Google Sheet - the data should appear automatically!
+1. Distribuisci la landing page aggiornata
+2. Compila il modulo sulla landing page
+3. Fai clic su "Invia Richiesta"
+4. Controlla il tuo Foglio Google - i dati dovrebbero apparire automaticamente!
 
-## Troubleshooting
+## Risoluzione dei Problemi
 
-- **Data not appearing**: Check that the Google Apps Script deployment URL is correct
-- **CORS errors**: Make sure the deployment is set to "Anyone" access
-- **Date format issues**: Check your browser console for JavaScript errors
+- **I dati non appaiono**: Controlla che l'URL di distribuzione di Google Apps Script sia corretto
+- **Errori CORS**: Assicurati che la distribuzione sia impostata su "Tutti" l'accesso
+- **Problemi di formato della data**: Controlla la console del browser per gli errori JavaScript
 
-## Security Note
+## Note di Sicurezza
 
-This setup is suitable for collecting customer inquiries. For production use with sensitive data, consider:
-- Adding authentication
-- Using HTTPS only
-- Implementing rate limiting
-- Adding data validation
+Questa configurazione è adatta per raccogliere richieste di clienti. Per l'uso in produzione con dati sensibili, considera:
+- Aggiungere autenticazione
+- Usare solo HTTPS
+- Implementare il rate limiting
+- Aggiungere la convalida dei dati
 
-## Support
+## Supporto
 
-For questions about this setup, refer to:
-- [Google Apps Script Documentation](https://developers.google.com/apps-script)
-- [Google Sheets API](https://developers.google.com/sheets/api)
-- [Google Apps Script Web Apps](https://developers.google.com/apps-script/guides/web)
+Per domande su questa configurazione, fai riferimento a:
+- [Documentazione di Google Apps Script](https://developers.google.com/apps-script)
+- [API di Google Sheets](https://developers.google.com/sheets/api)
+- [App Web di Google Apps Script](https://developers.google.com/apps-script/guides/web)
