@@ -3,57 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>inCruises - Viaggio Risparmiando fino al 50%</title>
+    <title>inCruises - Viaggia a Prezzi Scontati</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
         }
+        
         .hero {
             background: linear-gradient(135deg, #0066cc 0%, #00d4ff 100%);
             color: white;
             padding: 60px 20px;
             text-align: center;
         }
-        .hero h1 { font-size: 2.5em; margin-bottom: 20px; }
-        .hero p { font-size: 1.2em; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        h2 {
+            text-align: center;
+            font-size: 2.2em;
+            margin: 40px 0;
+            color: #0066cc;
+        }
+        
         .offers-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
-            margin: 60px 0;
+            margin-bottom: 60px;
         }
+        
         .offer-card {
-            border: 3px solid #ddd;
-            border-radius: 15px;
-            padding: 40px;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            background: #f9f9f9;
         }
-        .offer-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        
+        .offer-card .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
         }
-        .offer-card.travel { border-color: #ff9900; }
-        .offer-card.travel h2 { color: #ff9900; }
-        .offer-card.business { border-color: #28a745; }
-        .offer-card.business h2 { color: #28a745; }
-        .offer-card h2 { font-size: 2em; margin-bottom: 15px; }
-        .offer-card .icon { font-size: 3em; margin-bottom: 15px; }
-        .offer-card .subtitle { font-size: 1.1em; font-weight: bold; margin-bottom: 20px; color: #555; }
-        .offer-card ul { list-style: none; margin: 20px 0; text-align: left; }
-        .offer-card li { padding: 10px; background: white; margin: 8px 0; border-radius: 5px; border-left: 4px solid; }
-        .offer-card.travel li { border-left-color: #ff9900; }
-        .offer-card.business li { border-left-color: #28a745; }
-        .price { font-size: 1.8em; font-weight: bold; margin: 20px 0; color: #0066cc; }
+        
+        .offer-card h3 {
+            font-size: 1.8em;
+            margin: 20px 0;
+            color: #0066cc;
+        }
+        
+        .offer-card .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        
+        .offer-card ul {
+            list-style: none;
+            text-align: left;
+            margin: 20px 0;
+        }
+        
+        .offer-card li {
+            padding: 8px 0;
+            font-size: 0.95em;
+        }
+        
+        .price {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #0066cc;
+        }
+        
         .cta-button {
             background: linear-gradient(135deg, #0066cc 0%, #00d4ff 100%);
             color: white;
@@ -67,13 +110,18 @@
             margin-top: 20px;
             transition: transform 0.3s;
         }
-        .cta-button:hover { transform: scale(1.05); }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+        
         .form-section {
             background: #f0f0f0;
             padding: 50px 20px;
             margin-top: 60px;
             border-radius: 15px;
         }
+        
         .form-container {
             max-width: 600px;
             margin: 0 auto;
@@ -82,15 +130,33 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; }
-        .form-group input, .form-group select {
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
             width: 100%;
             padding: 12px;
             border: 2px solid #ddd;
             border-radius: 5px;
             font-size: 1em;
+            font-family: inherit;
         }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
         .submit-button {
             background: linear-gradient(135deg, #0066cc 0%, #00d4ff 100%);
             color: white;
@@ -100,204 +166,209 @@
             font-size: 1.1em;
             cursor: pointer;
             width: 100%;
+            font-weight: bold;
+            transition: transform 0.3s;
         }
-        @media (max-width: 768px) { .offers-section { grid-template-columns: 1fr; } }
+        
+        .submit-button:hover {
+            transform: scale(1.02);
+        }
+        
+        .benefits {
+            background: white;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-radius: 15px;
+        }
+        
+        .benefits h3 {
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            color: #0066cc;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .benefit-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .benefit-item .icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .benefit-item p {
+            font-size: 0.95em;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .offers-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 1.8em;
+            }
+            
+            h2 {
+                font-size: 1.6em;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="hero">
-        <h1>🚢 inCruises - Il Club di Viaggio Più Conveniente al Mondo</h1>
-        <p>Scopri Due Incredibili Opportunità: Viaggia o Guadagna!</p>
+        <h1>Viaggia a Prezzi Scontati con inCruises</h1>
+        <p>Scopri le Migliori Opportunita per Viaggiare con Sconti Fino al 50%</p>
     </div>
-
+    
     <div class="container">
-        <h2 style="text-align: center; font-size: 2.2em; margin: 40px 0;">Scegli la Tua Opportunità con inCruises</h2>
+        <h2>Scegli la Tua Opportunita</h2>
         
         <div class="offers-section">
-            <div class="offer-card travel">
-                <div class="icon">✈️</div>
-                <h2>MEMBERSHIP CLUB</h2>
+            <div class="offer-card">
+                <div class="icon">Viaggi</div>
+                <h3>MEMBERSHIP CLUB</h3>
                 <p class="subtitle">Per Chi Vuole Viaggiare</p>
                 <ul>
-                    <li>✓ Sconto INsider del 17% su crociere</li>
-                    <li>✓ Reward Points che si raddoppiano</li>
-                    <li>✓ 21,000+ opzioni di crociere</li>
-                    <li>✓ 430,000+ hotel e resort</li>
-                    <li>✓ 300,000+ tour e attività</li>
-                    <li>✓ Punti che non scadono mai</li>
-                    <li>✓ Risparmia fino al 50%</li>
+                    <li>Sconto inCruises del 17% su crociere</li>
+                    <li>Reward Points che si raddoppiano</li>
+                    <li>21,000+ opzioni di crociere</li>
+                    <li>430,000+ hotel e resort</li>
+                    <li>300,000+ tour e attivita</li>
+                    <li>Punti che non scadono mai</li>
+                    <li>Risparmia fino al 50%</li>
                 </ul>
-                <div class="price">A partire da €50</div>
-                <a href="https://danielen_it.incruises.com/signup" class="cta-button" target="_blank">✈️ Iscriviti come Membro</a>
+                <div class="price">A partire da 50 euro</div>
+                <a href="https://danielen_it.incruises.com/signup" class="cta-button" target="_blank">Iscriviti come Membro</a>
             </div>
-
-            <div class="offer-card business">
-                <div class="icon">💼</div>
-                <h2>PARTNERSHIP PROGRAM</h2>
+            
+            <div class="offer-card">
+                <div class="icon">Partner</div>
+                <h3>PARTNERSHIP PROGRAM</h3>
                 <p class="subtitle">Per Chi Vuole Guadagnare</p>
                 <ul>
-                    <li>✓ Reddito ricorrente illimitato</li>
-                    <li>✓ Commissioni su ogni vendita</li>
-                    <li>✓ Bonus di leadership</li>
-                    <li>✓ Programma referral globale</li>
-                    <li>✓ Membership gratuita</li>
-                    <li>✓ Supporto dedicato 24/7</li>
-                    <li>✓ Lavora da casa</li>
+                    <li>Reddito ricorrente illimitato</li>
+                    <li>Commissioni su ogni vendita</li>
+                    <li>Bonus di leadership</li>
+                    <li>Programma referral globale</li>
+                    <li>Membership gratuita</li>
+                    <li>Supporto dedicato 24/7</li>
+                    <li>Formazione completa</li>
                 </ul>
-                <div class="price">95€ ogni sei mesi</div>
-                <a href="https://danielen_it.incruises.com/signup" class="cta-button" target="_blank">💼 Diventa Partner</a>
-            </div>
-        </div>
-
-        <!-- SEZIONE: CONFRONTO ABBONAMENTI E VANTAGGI -->
-        <div class="container" style="margin-top: 80px; margin-bottom: 60px;">
-            <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f7ff 100%); padding: 50px; border-radius: 20px; border: 2px solid #0066cc;">
-                <h2 style="text-align: center; font-size: 2.5em; color: #0066cc; margin-bottom: 15px;">🎯 Scegli il Tuo Piano Perfetto</h2>
-                <p style="text-align: center; font-size: 1.2em; color: #333; margin-bottom: 40px; line-height: 1.8;">Scopri come ottenere fino al <strong>50% di sconto</strong> sulle crociere più esclusive del mondo. La differenza tra risparmiare poco e guadagnare tanto? Continua a leggere...</p>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 40px;">
-                    <!-- PIANO 1: MEMBRO STANDARD -->
-                    <div style="background: white; padding: 30px; border-radius: 15px; border-left: 5px solid #ff9900; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                        <h3 style="color: #ff9900; font-size: 1.5em; margin-bottom: 15px;">💳 Membro Club</h3>
-                        <div style="font-size: 2em; font-weight: bold; color: #0066cc; margin-bottom: 20px;">25% Sconto</div>
-                        <p style="color: #666; margin-bottom: 20px; line-height: 1.6;"><strong>Accesso base</strong> a crociere selezionate con sconti fedeltà fino al 25%.</p>
-                        <ul style="list-style: none; margin-bottom: 20px; text-align: left;">
-                            <li style="padding: 8px 0; border-bottom: 1px solid #eee;">✓ Iscrizione Gratuita</li>
-                            <li style="padding: 8px 0; border-bottom: 1px solid #eee;">✓ Accesso a 100+ crociere</li>
-                            <li style="padding: 8px 0; border-bottom: 1px solid #eee;">✓ Fino a 25% di sconto</li>
-                            <li style="padding: 8px 0; border-bottom: 1px solid #eee;">✓ Supporto email</li>
-                            <li style="padding: 8px 0; color: #ccc;">✗ Bonus crediti aggiuntivi</li>
-                            <li style="padding: 8px 0; color: #ccc;">✗ Accesso premium</li>
-                        </ul>
-                        <p style="background: #fff3cd; padding: 15px; border-radius: 10px; margin-top: 20px; color: #856404; border-left: 4px solid #ff9900;">⚠️ <strong>Limite:</strong> Perfetto per chi vuole risparmiare saltuariamente, ma NON per chi vuole veri guadagni.</p>
-                    </div>
-
-                    <!-- PIANO 2: PARTNER MEMBER (CONSIGLIATO) -->
-                    <div style="background: white; padding: 30px; border-radius: 15px; border: 3px solid #28a745; box-shadow: 0 8px 25px rgba(40,167,69,0.3); transform: scale(1.05); position: relative;">
-                        <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #28a745; color: white; padding: 8px 20px; border-radius: 20px; font-weight: bold; font-size: 0.9em;">⭐ CONSIGLIATO</div>
-                        <h3 style="color: #28a745; font-size: 1.5em; margin-bottom: 15px; margin-top: 20px;">💼 Partner Member</h3>
-                        <div style="font-size: 2em; font-weight: bold; color: #0066cc; margin-bottom: 20px;">50% Sconto + GUADAGNI</div>
-                        <p style="color: #666; margin-bottom: 20px; line-height: 1.6;"><strong>Opzione VINCENTE:</strong> Raggiungi il 50% di sconto E genera reddito fatturando $500+/mese.</p>
-                        <ul style="list-style: none; margin-bottom: 20px; text-align: left;">
-                            <li style="padding: 8px 0; border-bottom: 1px solid #eee;">✓ 50% di sconto MASSIMO</li>
-                            <li style="padding: 8px 0; border-bottom: 1px solid #eee;">✓ Commissioni su vendite</li>
-                            <li style="padding: 8px 0; border-bottom: 1px solid #eee;">✓ Bonus crediti illimitati</li>
-                            <li style="padding: 8px 0; border-bottom: 1px solid #eee;">✓ Supporto 24/7 dedicato</li>
-                            <li style="padding: 8px 0; border-bottom: 1px solid #eee;">✓ Accesso a crociere esclusive</li>
-                            <li style="padding: 8px 0; color: #28a745; font-weight: bold;">✓ 95€ ogni 6 mesi</li>
-                        </ul>
-                        <p style="background: #d4edda; padding: 15px; border-radius: 10px; margin-top: 20px; color: #155724; border-left: 4px solid #28a745;">🚀 <strong>Requisito:</strong> Fatturare $500+/mese per accedere ai vantaggi completi e agli sconti massimi.</p>
-                    </div>
-
-                    <!-- PIANO 3: VIP PARTNER -->
-                    <div style="background: white; padding: 30px; border-radius: 15px; border-left: 5px solid #6f42c1; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                        <h3 style="color: #6f42c1; font-size: 1.5em; margin-bottom: 15px;">👑 VIP Partner</h3>
-                        <div style="font-size: 2em; font-weight: bold; color: #0066cc; margin-bottom: 20px;">50% + Bonus</div>
-                        <p style="color: #666; margin-bottom: 20px; line-height: 1.6;"><strong>Massimo potenziale:</strong> Tutti i vantaggi del Partner + programmi di fidelizzazione esclusivi.</p>
-                        <ul style="list-style: none; margin-bottom: 20px; text-align: left;">
-                            <li style="padding: 8px 0; border-bottom: 1px solid #eee;">✓ Tutto ciò che è in Partner</li>
-                            <li style="padding: 8px 0; border-bottom: 1px solid #eee;">✓ Programma referral avanzato</li>
-                            <li style="padding: 8px 0; border-bottom: 1px solid #eee;">✓ Crociere gratuite annuali</li>
-                            <li style="padding: 8px 0; border-bottom: 1px solid #eee;">✓ Manager personale</li>
-                            <li style="padding: 8px 0; border-bottom: 1px solid #eee;">✓ Commissioni aumentate</li>
-                            <li style="padding: 8px 0; color: #ccc;">✗ (Disponibile su richiesta)</li>
-                        </ul>
-                        <p style="background: #e7e9ed; padding: 15px; border-radius: 10px; margin-top: 20px; color: #495057; border-left: 4px solid #6f42c1;">📞 <strong>Contattaci</strong> per aprire le porte al massimo profitto.</p>
-                    </div>
-                </div>
-
-                <!-- SEZIONE ESEMPI DI CROCIERE CON SCONTI -->
-                <div style="background: white; padding: 30px; border-radius: 15px; margin-top: 40px; border: 2px solid #0066cc;">
-                    <h3 style="text-align: center; font-size: 1.8em; color: #0066cc; margin-bottom: 30px;">🌍 Esempi Reali: Crociere Incredibili a Prezzi Scontatissimi</h3>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #28a745;">
-                            <h4 style="color: #0066cc; margin-bottom: 10px;">Crociera Caraibi - 7 Giorni</h4>
-                            <p style="color: #666; margin-bottom: 10px;"><strong>Prezzo base:</strong> €1200 per persona</p>
-                            <p style="color: #ff9900; font-weight: bold; margin-bottom: 10px;">Membro Club (25% sconto): <span style="font-size: 1.2em;">€900</span></p>
-                            <p style="color: #28a745; font-weight: bold;">Partner Member (50% sconto): <span style="font-size: 1.2em;">€600</span></p>
-                            <p style="color: #28a745; font-size: 0.9em; margin-top: 10px;">💰 Risparmi con Partner: €600 a persona!</p>
-                        </div>
-                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #28a745;">
-                            <h4 style="color: #0066cc; margin-bottom: 10px;">Crociera Mediterraneo - 10 Giorni</h4>
-                            <p style="color: #666; margin-bottom: 10px;"><strong>Prezzo base:</strong> €1800 per persona</p>
-                            <p style="color: #ff9900; font-weight: bold; margin-bottom: 10px;">Membro Club (25% sconto): <span style="font-size: 1.2em;">€1350</span></p>
-                            <p style="color: #28a745; font-weight: bold;">Partner Member (50% sconto): <span style="font-size: 1.2em;">€900</span></p>
-                            <p style="color: #28a745; font-size: 0.9em; margin-top: 10px;">💰 Risparmi con Partner: €900 a persona!</p>
-                        </div>
-                    </div>
-                    <div style="background: #fff3cd; padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 4px solid #ff9900;">
-                        <p style="color: #856404; line-height: 1.8;"><strong>🔥 Per famiglie di 4 persone:</strong> Con il piano Partner risparmi €2400-€3600 su una sola crociera! Immagina le vacanze di più anni... GRATIS.</p>
-                    </div>
-                </div>
-
-                <!-- SEZIONE FINALE PERSUASIVA -->
-                <div style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 40px; border-radius: 15px; margin-top: 40px; text-align: center;">
-                    <h3 style="font-size: 2em; margin-bottom: 15px;">🎁 La Scelta Giusta è Ovvia</h3>
-                    <p style="font-size: 1.1em; margin-bottom: 20px; line-height: 1.8;">Non scegliere tra risparmiare E guadagnare... <strong>Scegli di fare ENTRAMBI come Partner Member!</strong></p>
-                    <ul style="list-style: none; text-align: center; margin-bottom: 30px; font-size: 1.05em;">
-                        <li style="margin-bottom: 15px;">📍 Più basso costo di iscrizione: 95€ ogni 6 mesi</li>
-                        <li style="margin-bottom: 15px;">🎯 Sconti MASSIMI: fino al 50% sulle crociere</li>
-                        <li style="margin-bottom: 15px;">💵 Guadagni passivi: commissioni su ogni vendita</li>
-                        <li style="margin-bottom: 15px;">🌟 Supporto premium: team dedicato 24/7</li>
-                        <li style="margin-bottom: 15px;">✈️ Crociere GRATIS: con i crediti bonus illimitati</li>
-                    </ul>
-                    <p style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px; font-size: 1.1em; font-weight: bold; margin-bottom: 20px;">⚡ Partner Member = La vera opportunità per chi vuole VIVERE, RISPARMIARE e GUADAGNARE</p>
-                </div>
-            </div>
-        </div>
-        <!-- FINE SEZIONE ABBONAMENTI -->
-
-
-        <div class="form-section">
-            <h2 style="text-align: center;">📋 Richiedi Maggiori Informazioni</h2>
-            <div class="form-container">
-                <form id="contactForm" onsubmit="handleSubmit(event)">
-                    <div class="form-group">
-                        <label>Nome e Cognome *</label>
-                        <input type="text" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email *</label>
-                        <input type="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Telefono *</label>
-                        <input type="tel" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Cosa ti Interessa? *</label>
-                        <select name="interest" required>
-                            <option>-- Seleziona --</option>
-                            <option>💎 Membership Club - Viaggiare a Prezzi Scontati</option>
-                            <option>💼 Partnership Program - Guadagnare</option>
-                            <option>🎯 Entrambe</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="submit-button">🚀 Invia Richiesta</button>
-                </form>
+                <div class="price">Inizia Gratis</div>
+                <a href="https://danielen_it.incruises.com/signup" class="cta-button" target="_blank">Diventa Partner</a>
             </div>
         </div>
     </div>
-
+    
+    <div class="form-section">
+        <div class="form-container">
+            <h2>Richiedi Maggiori Informazioni</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #666;">Compila il form per ricevere informazioni su come viaggiare a prezzi scontati</p>
+            
+            <form id="inquiryForm">
+                <div class="form-group">
+                    <label for="nome">Nome Completo *</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telefono">Telefono</label>
+                    <input type="tel" id="telefono" name="telefono">
+                </div>
+                
+                <div class="form-group">
+                    <label for="data_richiesta">Data Richiesta *</label>
+                    <input type="date" id="data_richiesta" name="data_richiesta" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tipo_viaggio">Tipo di Viaggio Interessato *</label>
+                    <select id="tipo_viaggio" name="tipo_viaggio" required>
+                        <option value="">Seleziona un'opzione</option>
+                        <option value="crociera">Crociera</option>
+                        <option value="hotel">Hotel</option>
+                        <option value="tour">Tour e Attivita</option>
+                        <option value="pacchetto">Pacchetto Vacanza Completo</option>
+                        <option value="altro">Altro</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="destinazione">Destinazione Preferita</label>
+                    <input type="text" id="destinazione" name="destinazione" placeholder="es. Caraibi, Mediterraneo, Asia...">
+                </div>
+                
+                <div class="form-group">
+                    <label for="budget">Budget Approssimativo (euro)</label>
+                    <select id="budget" name="budget">
+                        <option value="">Seleziona una fascia</option>
+                        <option value="0-500">0 - 500 euro</option>
+                        <option value="500-1000">500 - 1000 euro</option>
+                        <option value="1000-2000">1000 - 2000 euro</option>
+                        <option value="2000+">2000+ euro</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="periodo">Periodo Preferito per il Viaggio</label>
+                    <input type="month" id="periodo" name="periodo">
+                </div>
+                
+                <div class="form-group">
+                    <label for="messaggio">Messaggio / Domande Specifiche</label>
+                    <textarea id="messaggio" name="messaggio" placeholder="Raccontaci di piu sui tuoi interessi di viaggio..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-button">Invia Richiesta</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="benefits">
+            <h3>Perche Scegliere inCruises?</h3>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="icon">Prezzo</div>
+                    <p><strong>Prezzi Scontati</strong><br>Fino al 50% di sconto su crociere e hotel</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">Mondo</div>
+                    <p><strong>Destinazioni Globali</strong><br>430,000+ hotel in tutto il mondo</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">Punti</div>
+                    <p><strong>Reward Points</strong><br>Punti che non scadono mai</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">Club</div>
+                    <p><strong>Esclusivo Club</strong><br>Accesso a offerte speciali membri</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <script>
-        function handleSubmit(event) {
-            event.preventDefault();
-            const formData = new FormData(document.getElementById('contactForm'));
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                interest: formData.get('interest'),
-                timestamp: new Date().toLocaleString('it-IT')
-            };
-            fetch('https://script.google.com/macros/d/AKfycbwVd3yLdJYRVGfOZ8sS1BgdyUaT5LANRvXgcBJt1NxsQp1VrLdVOhSw-pXfGWaCtPIr/usercopy', {
-                method: 'POST',
-                body: JSON.stringify(data)
-            }).then(() => {
-                alert('✓ Grazie! Ti contatteremo presto.');
-                document.getElementById('contactForm').reset();
-            }).catch(err => console.error(err));
-        }
+        document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            console.log('Form submitted');
+            alert('Grazie per la tua richiesta! Ti contatteremo presto.');
+        });
     </script>
 </body>
 </html>
