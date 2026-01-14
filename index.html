@@ -142,7 +142,7 @@
     <h2>Richiedi Informazioni Personalizzate</h2>
     <p>Compila il form e un nostro consulente ti contatterà entro 24 ore</p>
     
-    <form id="contactForm" action="https://formspree.io/f/mlezeqkd" method="POST">
+    <form id="contactForm" action="https://script.google.com/macros/s/AKfycbzlLHczH89MZY4ZQkk3NJBZBTfnST0hrj3ORMWT5uFNly_a9Py-SQMZa6mNU/usercontent" method="POST">
       <div class="form-group">
         <label for="nome">Nome *</label>
         <input type="text" id="nome" name="nome" required>
@@ -185,8 +185,26 @@
 
   <script>
     document.getElementById('contactForm').addEventListener('submit', function(e) {
-      // Form submission will be handled by Formspree
-      // Add data to Google Sheets automatically
+      /e.preventDefault();
+      const formData = new FormData(document.getElementById('contactForm'));
+      const data = {
+        nome: formData.get('nome'),
+        email: formData.get('email'),
+        telefono: formData.get('telefono'),
+        interesse: formData.get('interesse'),
+        messaggio: formData.get('messaggio')
+      };
+      fetch(this.action, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+      }).then(() => {
+        alert('Grazie! La tua richiesta è stata inviata con successo. Ti contatteremo presto.');
+        document.getElementById('contactForm').reset();
+      }).catch(error => {
+        console.error('Errore:', error);
+        alert('Si è verificato un errore. Riprova più tardi.');
+      });
     });
   </script>
 </body>
