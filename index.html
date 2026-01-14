@@ -21,19 +21,9 @@
             padding: 60px 20px;
             text-align: center;
         }
-        .hero h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-        .hero p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        .hero h1 { font-size: 2.5em; margin-bottom: 20px; }
+        .hero p { font-size: 1.2em; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         .offers-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -52,56 +42,18 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
-        .offer-card.travel {
-            border-color: #ff9900;
-        }
-        .offer-card.travel h2 {
-            color: #ff9900;
-        }
-        .offer-card.business {
-            border-color: #28a745;
-        }
-        .offer-card.business h2 {
-            color: #28a745;
-        }
-        .offer-card h2 {
-            font-size: 2em;
-            margin-bottom: 15px;
-        }
-        .offer-card .icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-        .offer-card .subtitle {
-            font-size: 1.1em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: #555;
-        }
-        .offer-card ul {
-            list-style: none;
-            margin: 20px 0;
-            text-align: left;
-        }
-        .offer-card li {
-            padding: 10px;
-            background: white;
-            margin: 8px 0;
-            border-radius: 5px;
-            border-left: 4px solid;
-        }
-        .offer-card.travel li {
-            border-left-color: #ff9900;
-        }
-        .offer-card.business li {
-            border-left-color: #28a745;
-        }
-        .price {
-            font-size: 1.8em;
-            font-weight: bold;
-            margin: 20px 0;
-            color: #0066cc;
-        }
+        .offer-card.travel { border-color: #ff9900; }
+        .offer-card.travel h2 { color: #ff9900; }
+        .offer-card.business { border-color: #28a745; }
+        .offer-card.business h2 { color: #28a745; }
+        .offer-card h2 { font-size: 2em; margin-bottom: 15px; }
+        .offer-card .icon { font-size: 3em; margin-bottom: 15px; }
+        .offer-card .subtitle { font-size: 1.1em; font-weight: bold; margin-bottom: 20px; color: #555; }
+        .offer-card ul { list-style: none; margin: 20px 0; text-align: left; }
+        .offer-card li { padding: 10px; background: white; margin: 8px 0; border-radius: 5px; border-left: 4px solid; }
+        .offer-card.travel li { border-left-color: #ff9900; }
+        .offer-card.business li { border-left-color: #28a745; }
+        .price { font-size: 1.8em; font-weight: bold; margin: 20px 0; color: #0066cc; }
         .cta-button {
             background: linear-gradient(135deg, #0066cc 0%, #00d4ff 100%);
             color: white;
@@ -115,9 +67,7 @@
             margin-top: 20px;
             transition: transform 0.3s;
         }
-        .cta-button:hover {
-            transform: scale(1.05);
-        }
+        .cta-button:hover { transform: scale(1.05); }
         .form-section {
             background: #f0f0f0;
             padding: 50px 20px;
@@ -132,14 +82,8 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; }
         .form-group input, .form-group select {
             width: 100%;
             padding: 12px;
@@ -157,9 +101,7 @@
             cursor: pointer;
             width: 100%;
         }
-        @media (max-width: 768px) {
-            .offers-section { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 768px) { .offers-section { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -172,7 +114,6 @@
         <h2 style="text-align: center; font-size: 2.2em; margin: 40px 0;">Scegli la Tua Opportunità con inCruises</h2>
         
         <div class="offers-section">
-            <!-- MEMBERSHIP CLUB -->
             <div class="offer-card travel">
                 <div class="icon">✈️</div>
                 <h2>MEMBERSHIP CLUB</h2>
@@ -187,12 +128,9 @@
                     <li>✓ Risparmia fino al 50%</li>
                 </ul>
                 <div class="price">A partire da €50</div>
-                <a href="https://danielen_it.incruises.com/signup" class="cta-button" target="_blank">
-                    ✈️ Iscriviti come Membro
-                </a>
+                <a href="https://danielen_it.incruises.com/signup" class="cta-button" target="_blank">✈️ Iscriviti come Membro</a>
             </div>
 
-            <!-- PARTNERSHIP PROGRAM -->
             <div class="offer-card business">
                 <div class="icon">💼</div>
                 <h2>PARTNERSHIP PROGRAM</h2>
@@ -207,9 +145,7 @@
                     <li>✓ Lavora da casa</li>
                 </ul>
                 <div class="price">A partire da €95</div>
-                <a href="https://danielen_it.incruises.com/signup" class="cta-button" target="_blank">
-                    💼 Diventa Partner
-                </a>
+                <a href="https://danielen_it.incruises.com/signup" class="cta-button" target="_blank">💼 Diventa Partner</a>
             </div>
         </div>
 
@@ -255,8 +191,6 @@
                 interest: formData.get('interest'),
                 timestamp: new Date().toLocaleString('it-IT')
             };
-            
-            // Invia dati a Google Sheets
             fetch('https://script.google.com/macros/d/AKfycbwVd3yLdJYRVGfOZ8sS1BgdyUaT5LANRvXgcBJt1NxsQp1VrLdVOhSw-pXfGWaCtPIr/usercopy', {
                 method: 'POST',
                 body: JSON.stringify(data)
