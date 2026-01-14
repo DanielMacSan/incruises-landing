@@ -247,9 +247,13 @@
       <p style="text-align: center; font-size: 0.85em; color: #999; margin-bottom: 20px;">Ultime recensioni verificate da <strong>Trustpilot</strong> - Aggiornate automaticamente</p>
     <div id="reviewsContainer" data-last-updated="2026-01-14"></div>
     
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto;">
+  <div style="text-align: center; margin-bottom: 20px;">
+    <button onclick="previousReview()" style="padding: 10px 20px; background-color: #0066cc; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 0 10px; font-size: 16px;">← Precedente</button>
+    <button onclick="nextReview()" style="padding: 10px 20px; background-color: #0066cc; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 0 10px; font-size: 16px;">Prossimo →</button>
+</div>  
+  <id="reviewsSlider" div style="display: flex; gap: 20px; max-width: 1200px; margin: 0 auto; overflow-x: auto; scroll-behavior: smooth;">
         <!-- Recensione 1 -->
-        <div style="background-color: white; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <div display: flexstyle="background-color: white; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107; box-shadow: 0 2px 8px rgba(0,0,0,0.1); flex-shrink: 0; width: 100%;"<div id="reviewsSlider" style="display: flex;; gap: 20px; max-width: 1200px; margin: 0 auto; overflow-x: auto; scroll-behavior: smooth;>
             <div style="display: flex; align-items: center; margin-bottom: 12px;">
                 <span style="font-size: 1.3em; color: #ffc107;">⭐⭐⭐⭐⭐</span>
             </div>
@@ -258,7 +262,7 @@
         </div>
         
         <!-- Recensione 2 -->
-        <div style="background-color: white; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <div display: flexstyle="background-color: white; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107; box-shadow: 0 2px 8px rgba(0,0,0,0.1); flex-shrink: 0; width: 100%;"<div id="reviewsSlider" style="display: flex;; gap: 20px; max-width: 1200px; margin: 0 auto; overflow-x: auto; scroll-behavior: smooth;>
             <div style="display: flex; align-items: center; margin-bottom: 12px;">
                 <span style="font-size: 1.3em; color: #ffc107;">⭐⭐⭐⭐⭐</span>
             </div>
@@ -267,7 +271,7 @@
         </div>
         
         <!-- Recensione 3 -->
-        <div style="background-color: white; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <div display: flexstyle="background-color: white; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107; box-shadow: 0 2px 8px rgba(0,0,0,0.1); flex-shrink: 0; width: 100%;"<div id="reviewsSlider" style="display: flex;; gap: 20px; max-width: 1200px; margin: 0 auto; overflow-x: auto; scroll-behavior: smooth;>
             <div style="display: flex; align-items: center; margin-bottom: 12px;">
                 <span style="font-size: 1.3em; color: #ffc107;">⭐⭐⭐⭐⭐</span>
             </div>
@@ -277,7 +281,7 @@
         </div>
         
         <!-- Recensione 4 -->
-        <div style="background-color: white; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <div display: flexstyle="background-color: white; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107; box-shadow: 0 2px 8px rgba(0,0,0,0.1); flex-shrink: 0; width: 100%;"<div id="reviewsSlider" style="display: flex;; gap: 20px; max-width: 1200px; margin: 0 auto; overflow-x: auto; scroll-behavior: smooth;>
             <div style="display: flex; align-items: center; margin-bottom: 12px;">
                 <span style="font-size: 1.3em; color: #ffc107;">⭐⭐⭐⭐⭐</span>
             </div>
@@ -288,7 +292,7 @@
         </div>
         
         <!-- Recensione 5 -->
-        <div style="background-color: white; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <div display: flexstyle="background-color: white; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107; box-shadow: 0 2px 8px rgba(0,0,0,0.1); flex-shrink: 0; width: 100%;"<div id="reviewsSlider" style="display: flex;; gap: 20px; max-width: 1200px; margin: 0 auto; overflow-x: auto; scroll-behavior: smooth;>
             <div style="display: flex; align-items: center; margin-bottom: 12px;">
                 <span style="font-size: 1.3em; color: #ffc107;">⭐⭐⭐⭐⭐</span>
             </div>
@@ -331,6 +335,17 @@
         alert('Si è verificato un errore. Riprova più tardi.');
       });
     });
+    
+    function nextReview() {
+        const slider = document.getElementById('reviewsSlider');
+        slider.scrollLeft += slider.offsetWidth;
+    }
+    
+    function previousReview() {
+        const slider = document.getElementById('reviewsSlider');
+        slider.scrollLeft -= slider.offsetWidth;
+    }
+    
   </script>
 </body>
 </html>
