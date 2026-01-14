@@ -1,41 +1,41 @@
-# Quick Start Guide - inCruises Landing Page
+# Guida Rapida - Landing Page inCruises
 
-## Overview
-This is a complete solution for collecting customer inquiries about discounted travel offers. The landing page is fully functional and ready to deploy.
+## Panoramica
+Questa è una soluzione completa per raccogliere richieste di clienti su offerte di viaggio scontato. La landing page è completamente funzionale e pronta per il deployment.
 
-## What You Get
+## Cosa Ottieni
 
 ✅ **Landing Page** (`index.html`)
-- Professional, responsive design
-- All necessary form fields
-- Mobile-optimized interface
-- Live deployment via GitHub Pages
+- Design responsivo e professionale
+- Tutti i campi modulo necessari
+- Interfaccia ottimizzata per dispositivi mobili
+- Deployment live tramite GitHub Pages
 
-✅ **Google Sheets Integration** (`google-sheets-integration.js`)
-- Standalone JavaScript module
-- Form validation
-- Error handling
-- Success notifications
+✅ **Integrazione Google Sheets** (`google-sheets-integration.js`)
+- Modulo JavaScript standalone
+- Convalida del modulo
+- Gestione degli errori
+- Notifiche di successo
 
-✅ **Documentation**
-- Comprehensive setup guide (SETUP_GOOGLE_SHEETS.md)
-- This quick start guide
-- Inline code comments
+✅ **Documentazione**
+- Guida di configurazione completa (SETUP_GOOGLE_SHEETS.md)
+- Questa guida rapida
+- Commenti nel codice
 
-## Quick Setup (5 Minutes)
+## Configurazione Rapida (5 Minuti)
 
-### Step 1: View Your Landing Page
+### Passaggio 1: Visualizza la tua Landing Page
 
-Your landing page is already deployed and live! 
+La tua landing page è già deployata e live!
 
-Access it at: `https://danielmacsan.github.io/incruises-landing/`
+Accedi a: `https://danielmacsan.github.io/incruises-landing/`
 
-### Step 2: Set Up Google Sheets
+### Passaggio 2: Configura Google Sheets
 
-1. Go to [Google Sheets](https://sheets.google.com)
-2. Create a new spreadsheet
-3. Name it: **"inCruises Customer Inquiries"**
-4. Add these column headers in row 1:
+1. Vai a [Google Sheets](https://sheets.google.com)
+2. Crea un nuovo foglio di lavoro
+3. Nominalo: **"Richieste inCruises"**
+4. Aggiungi questi intestazioni di colonna nella riga 1:
    - A1: `Data Richiesta`
    - B1: `Nome Completo`
    - C1: `Email`
@@ -46,11 +46,11 @@ Access it at: `https://danielmacsan.github.io/incruises-landing/`
    - H1: `Periodo`
    - I1: `Messaggio`
 
-### Step 3: Create Google Apps Script
+### Passaggio 3: Crea Google Apps Script
 
-1. In your Google Sheet, go to **Tools → Script editor**
-2. Delete existing code
-3. Copy and paste this script:
+1. Nel tuo Foglio Google, vai a **Strumenti → Editor di script**
+2. Elimina il codice esistente
+3. Copia e incolla questo script:
 
 ```javascript
 function doPost(e) {
@@ -74,123 +74,123 @@ function doPost(e) {
     return ContentService.createTextOutput(JSON.stringify({success: true}))
       .setMimeType(ContentService.MimeType.JSON);
   } catch (error) {
-    Logger.log('Error: ' + error);
+    Logger.log('Errore: ' + error);
     return ContentService.createTextOutput(JSON.stringify({success: false}))
       .setMimeType(ContentService.MimeType.JSON);
   }
 }
 ```
 
-4. Save it (name it "inCruises Form Handler")
-5. Click **Deploy → New deployment**
-6. Select type: **Web app**
-7. Set "Execute as" to your account
-8. Set "Who has access" to **Anyone**
-9. Click **Deploy**
-10. **Copy the deployment URL** (look like `https://script.google.com/macros/d/XXXXX/userweb`)
+4. Salvalo (nominalo "Gestore Modulo inCruises")
+5. Fai clic su **Distribuisci → Nuova distribuzione**
+6. Seleziona tipo: **App Web**
+7. Imposta "Esegui come" al tuo account
+8. Imposta "Chi ha accesso" su **Tutti**
+9. Fai clic su **Distribuisci**
+10. **Copia l'URL di distribuzione** (simile a `https://script.google.com/macros/d/XXXXX/userweb`)
 
-### Step 4: Configure the Form
+### Passaggio 4: Configura il Modulo
 
-#### Option A: Using Formspree (Easiest)
+#### Opzione A: Usando Formspree (Più facile)
 
-1. Go to [Formspree](https://formspree.io)
-2. Create a new form
-3. Set endpoint to your email
-4. Edit `index.html`
-5. Find the `<form>` tag
-6. Change it to:
+1. Vai a [Formspree](https://formspree.io)
+2. Crea un nuovo modulo
+3. Imposta l'endpoint sulla tua email
+4. Modifica `index.html`
+5. Trova il tag `<form>`
+6. Cambialo con:
    ```html
    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
    ```
 
-#### Option B: Using Google Apps Script (Recommended)
+#### Opzione B: Usando Google Apps Script (Consigliato)
 
-1. Edit `index.html`
-2. Find the line: `<form id="inquiryForm">`
-3. Add `onsubmit="submitInquiryForm(event)"`
-4. Add this before `</body>`:
+1. Modifica `index.html`
+2. Trova la riga: `<form id="inquiryForm">`
+3. Aggiungi `onsubmit="submitInquiryForm(event)"`
+4. Aggiungi questo prima di `</body>`:
    ```html
    <script src="google-sheets-integration.js"></script>
    <script>
-     // Configure your Google Apps Script URL
+     // Configura il tuo URL di Google Apps Script
      const GOOGLE_SHEETS_DEPLOYMENT_URL = 'https://script.google.com/macros/d/YOUR_SCRIPT_ID/userweb';
    </script>
    ```
-5. Replace `YOUR_SCRIPT_ID` with your actual Script ID from Step 3
+5. Sostituisci `YOUR_SCRIPT_ID` con il tuo ID Script reale dal Passaggio 3
 
-### Step 5: Test It!
+### Passaggio 5: Testa!
 
-1. Open your landing page
-2. Fill out the form completely
-3. Click "Invia Richiesta" (Submit)
-4. You should see a success message
-5. Check your Google Sheet - the data should appear!
+1. Apri la tua landing page
+2. Completa il modulo
+3. Fai clic su "Invia Richiesta"
+4. Dovresti vedere un messaggio di successo
+5. Controlla il tuo Foglio Google - i dati dovrebbero apparire!
 
-## File Structure
+## Struttura File
 
 ```
 incruises-landing/
-├── index.html                      # Main landing page
-├── google-sheets-integration.js    # Form handler script
-├── SETUP_GOOGLE_SHEETS.md          # Detailed setup guide
-├── QUICKSTART.md                   # This file
-└── README.md                       # Project overview
+├── index.html                      # Landing page principale
+├── google-sheets-integration.js    # Script di gestione modulo
+├── SETUP_GOOGLE_SHEETS.md          # Guida di configurazione dettagliata
+├── QUICKSTART.md                   # Questa guida
+└── README.md                       # Panoramica del progetto
 ```
 
-## Troubleshooting
+## Risoluzione Problemi
 
-### "Form not submitting"
-- Check browser console for errors (F12)
-- Verify the Google Apps Script URL is correct
-- Make sure deployment is set to "Anyone" access
+### "Il modulo non viene inviato"
+- Controlla la console del browser per gli errori (F12)
+- Verifica che l'URL di Google Apps Script sia corretto
+- Assicurati che la distribuzione sia impostata su "Tutti" l'accesso
 
-### "Data not appearing in Sheet"
-- Confirm the deployment URL in the form
-- Check Google Apps Script execution logs
-- Verify column headers match exactly
+### "I dati non appaiono nel Foglio"
+- Conferma l'URL di distribuzione nel modulo
+- Controlla i registri di esecuzione di Google Apps Script
+- Verifica che gli intestazioni di colonna corrispondano esattamente
 
-### "CORS errors"
-- Google Apps Scripts require `mode: 'no-cors'`
-- This is already configured in `google-sheets-integration.js`
+### "Errori CORS"
+- Google Apps Scripts richiede `mode: 'no-cors'`
+- Questo è già configurato in `google-sheets-integration.js`
 
-## Customization
+## Personalizzazione
 
-### Change Form Fields
-Edit `index.html` to add/remove form fields. Remember to:
-1. Update the HTML form
-2. Update column headers in Google Sheet
-3. Update the JavaScript in both files
+### Modificare i Campi del Modulo
+Modifica `index.html` per aggiungere/rimuovere campi del modulo. Ricorda di:
+1. Aggiornare il modulo HTML
+2. Aggiornare gli intestazioni di colonna nel Foglio Google
+3. Aggiornare il JavaScript in entrambi i file
 
-### Style Customization
-All styling is in the `<style>` section of `index.html`. Modify colors, fonts, and layout there.
+### Personalizzazione dello Stile
+Tutto lo stile è nella sezione `<style>` di `index.html`. Modifica colori, caratteri e layout lì.
 
-### Add Redirect After Submission
-Uncomment this in `google-sheets-integration.js`:
+### Aggiungi Reindirizzamento Dopo l'Invio
+Scommenta questo in `google-sheets-integration.js`:
 ```javascript
 setTimeout(() => {
-    window.location.href = '/thank-you.html';
+    window.location.href = '/grazie.html';
 }, 2000);
 ```
 
-## Next Steps
+## Passaggi Successivi
 
-1. ✅ Deploy the landing page (already done!)
-2. ✅ Set up Google Sheets
-3. ✅ Create Google Apps Script
-4. ✅ Test the form
-5. Share the link with customers: `https://danielmacsan.github.io/incruises-landing/`
+1. ✅ Distribuisci la landing page (già fatto!)
+2. ✅ Configura Google Sheets
+3. ✅ Crea Google Apps Script
+4. ✅ Testa il modulo
+5. Condividi il link con i clienti: `https://danielmacsan.github.io/incruises-landing/`
 
-## Support
+## Supporto
 
-For detailed information, see:
-- [SETUP_GOOGLE_SHEETS.md](SETUP_GOOGLE_SHEETS.md) - Comprehensive setup guide
-- [Google Apps Script Documentation](https://developers.google.com/apps-script)
-- [Formspree Documentation](https://formspree.io/docs) (alternative)
+Per informazioni dettagliate, vedi:
+- [SETUP_GOOGLE_SHEETS.md](SETUP_GOOGLE_SHEETS.md) - Guida di configurazione completa
+- [Documentazione Google Apps Script](https://developers.google.com/apps-script)
+- [Documentazione Formspree](https://formspree.io/docs) (alternativa)
 
-## License
+## Licenza
 
-Free to use and modify for your inCruises business.
+Libero da usare e modificare per il tuo business inCruises.
 
 ---
 
-**Ready to collect inquiries? Start with Step 1 above!** 🚀
+**Pronto a raccogliere richieste? Inizia dal Passaggio 1 sopra!** 🚀
