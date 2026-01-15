@@ -1,166 +1,391 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>inCruises - Nessuno Fa Crociere Meglio!</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
-    .hero { background: linear-gradient(135deg, #0066cc 0%, #004d99 100%); color: white; padding: 60px 20px; text-align: center; }
-    .hero h1 { font-size: 2.5em; margin-bottom: 20px; }
-    .hero p { font-size: 1.3em; margin-bottom: 30px; }
-    .section { padding: 50px 20px; text-align: center; background: #f8f9fa; }
-    .section h2 { color: #0066cc; margin-bottom: 40px; font-size: 2em; }
-    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-    .price-card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 2px solid #ddd; transition: all 0.3s; }
-    .price-card:hover { transform: translateY(-5px); box-shadow: 0 8px 12px rgba(0,0,0,0.2); border-color: #0066cc; }
-    .price-card h3 { color: #0066cc; margin-bottom: 15px; font-size: 1.8em; }
-    .price-card .cost { font-size: 2.5em; color: #004d99; margin: 20px 0; font-weight: bold; }
-    .price-card .cost small { font-size: 0.6em; color: #666; }
-    .price-card ul { text-align: left; margin: 20px 0; list-style: none; }
-    .price-card li { padding: 10px 0; border-bottom: 1px solid #eee; }
-    .price-card li:last-child { border-bottom: none; }
-    .price-card li:before { content: "✓ "; color: #28a745; font-weight: bold; margin-right: 10px; }
-    .section.white { background: white; }
-    .btn { display: inline-block; padding: 12px 30px; background: linear-gradient(135deg, #0066cc 0%, #004d99 100%); color: white; text-decoration: none; border-radius: 5px; margin-top: 20px; border: none; cursor: pointer; font-size: 1.1em; transition: transform 0.2s; }
-    .btn:hover { transform: translateY(-2px); text-decoration: none; color: white; }
-    .partner-section { background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%); color: white; padding: 50px 20px; text-align: center; }
-    .partner-section h2 { color: white; margin-bottom: 40px; }
-    .partner-content { max-width: 1200px; margin: 0 auto; }
-    .partner-box { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-    .partner-box h3 { font-size: 2em; margin-bottom: 20px; }
-    .partner-benefits { text-align: left; }
-    .partner-benefits li { color: white; margin: 15px 0; font-size: 1.1em; }
-    .partner-benefits li:before { content: "★ "; margin-right: 10px; }
-    form { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 800px; margin: 50px auto; }
-    .form-group { margin-bottom: 25px; }
-    label { display: block; margin-bottom: 8px; color: #333; font-weight: 600; }
-    input[type="text"], input[type="email"], input[type="tel"], select, textarea { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 5px; font-size: 16px; transition: border-color 0.3s; }
-    input:focus, select:focus, textarea:focus { outline: none; border-color: #0066cc; }
-    button[type="submit"] { width: 100%; padding: 15px; background: linear-gradient(135deg, #0066cc 0%, #004d99 100%); color: white; border: none; border-radius: 5px; font-size: 1.2em; font-weight: bold; cursor: pointer; }
-    button[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.2); }
-    footer { background: #333; color: white; text-align: center; padding: 20px; margin-top: 50px; }
-    #reviewsSlider { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 30px auto; padding: 0 20px; }
-    .review-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #ffc107; min-height: 220px; }
-    .review-card .stars { color: #ffc107; font-size: 1.2em; margin-bottom: 10px; }
-    .review-card p { color: #555; margin: 10px 0; font-size: 0.9em; line-height: 1.4; }
-    .review-card .author { color: #0066cc; font-weight: bold; margin-top: 12px; font-size: 0.95em; }
-    .review-card .date { color: #999; font-size: 0.85em; margin-top: 5px; }
-    .trust-badge { background: #e8f4f8; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center; }
-    .trust-badge strong { color: #0066cc; }
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 1.8em; }
-      .partner-box { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; }
-      #reviewsSlider { grid-template-columns: 1fr; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inCruises - Viaggio Risparmiando fino al 50%</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0066cc 0%, #00d4ff 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .offers-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .offer-card {
+            border: 3px solid #ddd;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: #f9f9f9;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-color: #0066cc;
+        }
+
+        .offer-card.travel {
+            border-color: #ff9900;
+        }
+
+        .offer-card.travel h2 {
+            color: #ff9900;
+        }
+
+        .offer-card.business {
+            border-color: #28a745;
+        }
+
+        .offer-card.business h2 {
+            color: #28a745;
+        }
+
+        .offer-card h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .offer-card .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .offer-card .subtitle {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .offer-card ul {
+            list-style: none;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .offer-card li {
+            padding: 10px;
+            background: white;
+            margin: 8px 0;
+            border-radius: 5px;
+            border-left: 4px solid;
+        }
+
+        .offer-card.travel li {
+            border-left-color: #ff9900;
+        }
+
+        .offer-card.business li {
+            border-left-color: #28a745;
+        }
+
+        .price {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #0066cc;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #0066cc 0%, #00d4ff 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.3);
+        }
+
+        .form-section {
+            background: #f0f0f0;
+            padding: 50px 20px;
+            margin-top: 60px;
+            border-radius: 15px;
+        }
+
+        .form-section h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #0066cc 0%, #00d4ff 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .submit-button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.3);
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .questions-section {
+            background: #f0f8ff;
+            padding: 40px 20px;
+            margin-top: 40px;
+            border-radius: 15px;
+        }
+
+        .questions-section h3 {
+            margin: 15px 0 10px 0;
+            color: #0066cc;
+        }
+
+        @media (max-width: 768px) {
+            .offers-section {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
 </head>
 <body>
-  <section class="hero">
-    <h1>🚢 Nessuno Fa Crociere Meglio di inCruises!</h1>
-    <p>Il Club di Viaggi a Premi più prezioso del mondo</p>
-    <p>Esplora, Scopri, Divertiti di più a MENO!</p>
-    <p style="font-size: 1em; margin-top: 20px;">✓ INsider Pricing: Sconto immediato del 17% | ✓ Crediti Premio: Risparmia fino al 50% | ✓ Over 21.000 crociere disponibili</p>
-  </section>
-
-  <section class="section white">
-    <h2>💎 Scegli il Piano di Membership Perfetto</h2>
-    <p>Quattro opzioni flessibili per ogni esigenza di viaggio - Dal 2015, rendiamo il lusso accessibile!</p>
-    
-    <div class="pricing-grid">
-      <!-- STARTER -->
-      <div class="price-card">
-        <h3>🌟 STARTER</h3>
-        <div class="cost">$50 <small>/mese</small></div>
-        <p><strong>Il trampolino di lancio!</strong></p>
-        <p style="color: #666; font-size: 0.9em; margin: 10px 0;">Costo di attivazione: $50</p>
-        <ul>
-          <li>100 Crediti Premio all'iscrizione</li>
-          <li>50 Crediti Premio mensili</li>
-          <li>2 prenotazioni INsider Pricing annuali</li>
-          <li>Sconto immediato del 17%</li>
-          <li>Accesso portale esclusivo</li>
-        </ul>
-        <p style="color: #28a745; font-weight: bold; margin-top: 15px;">Upgrade gratuito a CLASSIC con 4 pagamenti puntuali!</p>
-        <a href="https://danielen_it.incruises.com/membership" class="btn">Inizia Ora</a>
-      </div>
-
-      <!-- CLASSIC -->
-      <div class="price-card">
-        <h3>💫 CLASSIC</h3>
-        <div class="cost">$100 <small>/mese</small></div>
-        <p><strong>Un successo comprovato!</strong></p>
-        <p style="color: #666; font-size: 0.9em; margin: 10px 0;">Costo di attivazione: $100</p>
-        <ul>
-          <li>350 Crediti Premio all'iscrizione</li>
-          <li>200 Crediti Premio mensili</li>
-          <li>5 prenotazioni INsider Pricing annuali</li>
-          <li>Sconto immediato del 17%</li>
-          <li>Crediti doppi con pagamenti puntuali</li>
-        </ul>
-        <p style="color: #0066cc; font-weight: bold; margin-top: 15px;">Grande Valore!</p>
-        <a href="https://danielen_it.incruises.com/membership" class="btn">Scopri Classic</a>
-      </div>
-
-      <!-- PREMIUM -->
-      <div class="price-card">
-        <h3>👑 PREMIUM</h3>
-        <div class="cost">$250 <small>/mese</small></div>
-        <p><strong>Massimo valore!</strong></p>
-        <p style="color: #666; font-size: 0.9em; margin: 10px 0;">Costo di attivazione: $250</p>
-        <ul>
-          <li>800 Crediti Premio all'iscrizione</li>
-          <li>500 Crediti Premio mensili</li>
-          <li>ACCESSO ILLIMITATO a INsider Pricing</li>
-          <li>Sconto immediato del 17%</li>
-          <li>Prenotazioni Premium disponibili</li>
-        </ul>
-        <p style="color: #0066cc; font-weight: bold; margin-top: 15px;">Molto di più di tutto ciò che ami!</p>
-        <a href="https://danielen_it.incruises.com/membership" class="btn">Diventa Premium</a>
-      </div>
-
-      <!-- GRATUITA -->
-      <div class="price-card">
-        <h3>🎁 GRATUITA (Con Partnership)</h3>
-        <div class="cost">$0 <small>/mese</small></div>
-        <p><strong>Opzione economica!</strong></p>
-        <p style="color: #666; font-size: 0.9em; margin: 10px 0;">Solo per Partner Attivi</p>
-        <ul>
-          <li>50 Crediti Premio all'iscrizione</li>
-          <li>Accesso a INsider Pricing</li>
-          <li>Utilizza Crediti Premio per sconti</li>
-          <li>Supporto cliente 24/7</li>
-          <li>Possibilità di guadagnare denaro</li>
-        </ul>
-        <p style="color: #28a745; font-weight: bold; margin-top: 15px;">Protezione Trust My Travel inclusa!</p>
-        <a href="https://danielen_it.incruises.com/partner" class="btn">Diventa Partner</a>
-      </div>
+    <div class="hero">
+        <h1>🚢 inCruises - Esplora il Mondo a Prezzi Scontati</h1>
+        <p>Il Club di Premi Viaggio di Maggior Valore al Mondo</p>
     </div>
 
-    <div class="trust-badge">
-      <p>🛡️ <strong>Tutti i pagamenti protetti da Trust My Travel</strong></p>
-      <p style="font-size: 0.9em; margin-top: 10px; color: #666;">Se inCruises dovesse fallire, riceverai il rimborso del valore non utilizzato</p>
-    </div>
-  </section>
+    <div class="container">
+        <h2 style="text-align: center; font-size: 2.2em; margin: 40px 0; color: #333;">Scegli la Tua Opportunità con inCruises</h2>
+        
+        <div class="offers-section">
+            <!-- OFFERTA 1: MEMBERSHIP CLUB -->
+            <div class="offer-card travel">
+                <div class="icon">✈️</div>
+                <h2>MEMBERSHIP CLUB</h2>
+                <p class="subtitle">Per Chi Vuole Viaggiare</p>
+                
+                <p>Accedi al Club di Viaggio più Conveniente al Mondo</p>
+                
+                <ul>
+                    <li>✓ Sconto INsider del 17% su crociere</li>
+                    <li>✓ Reward Points che si raddoppiano</li>
+                    <li>✓ 21,000+ opzioni di crociere</li>
+                    <li>✓ 430,000+ hotel e resort</li>
+                    <li>✓ 300,000+ tour e attività</li>
+                    <li>✓ Punti che non scadono mai</li>
+                    <li>✓ Accesso a viaggi di lusso a prezzi scontati</li>
+                </ul>
 
-  <section class="section">
-    <h2>Richiedi Informazioni Sulle Nostre Crociere</h2>
-    <p>Compila il form e un consulente ti contatterà entro 24 ore</p>
-    <form id="contactForm">
-      <div class="form-group">
-        <label for="nome">Nome Completo *</label>
-        <input type="text" id="nome" name="nome" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email *</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      <div class="form-group">
-        <label for="telefono">Telefono *</label>
-        <input type="tel" id="telefono" name="telefono" required>
-      </div>
-      <div class="form-group">
-        <label for="interesse">Mi interessa principalmente: *</label>
-        <select id="interesse" name="interesse
+                <div class="price">Da €50 a €500</div>
+                <p style="font-size: 0.9em; color: #666;">
+                    <strong>Piani disponibili:</strong><br>
+                    Starter: €50 attivazione<br>
+                    Classic: €200 attivazione + €100/mese<br>
+                    Premium: €500 attivazione + €250/mese
+                </p>
+
+                <a href="https://danielen_it.incruises.com/signup" class="cta-button" target="_blank">
+                    Iscriviti come Membro ➜
+                </a>
+            </div>
+
+            <!-- OFFERTA 2: PARTNERSHIP PROGRAM -->
+            <div class="offer-card business">
+                <div class="icon">💼</div>
+                <h2>PARTNERSHIP PROGRAM</h2>
+                <p class="subtitle">Per Chi Vuole Lavorare e Guadagnare</p>
+                
+                <p>Trasforma la Tua Passione per i Viaggi in Reddito Ricorrente</p>
+                
+                <ul>
+                    <li>✓ Reddito ricorrente illimitato</li>
+                    <li>✓ Commissioni su ogni vendita</li>
+                    <li>✓ Bonus di leadership</li>
+                    <li>✓ Programma referral globale</li>
+                    <li>✓ Membership gratuita/agevolata</li>
+                    <li>✓ Supporto dedicato 24/7</li>
+                    <li>✓ Lavoro da casa, senza limiti geografici</li>
+                </ul>
+
+                <div class="price">€95 - €295</div>
+                <p style="font-size: 0.9em; color: #666;">
+                    <strong>Piani disponibili:</strong><br>
+                    Partner: €95 attivazione<br>
+                    Partner Member: €295 attivazione<br>
+                    Rinnovo: €95 biennale
+                </p>
+
+                <a href="https://danielen_it.incruises.com/signup" class="cta-button" target="_blank">
+                    Diventa Partner ➜
+                </a>
+            </div>
+        </div>
+
+        <!-- FORM SECTION -->
+        <div class="form-section">
+            <h2>Richiedi Maggiori Informazioni</h2>
+            <div class="form-container">
+                <div class="success-message" id="successMessage">
+                    ✓ Grazie! I tuoi dati sono stati registrati. Ti contatteremo presto!
+                </div>
+                
+                <form id="contactForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Nome e Cognome *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Telefono *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interest">Sei Interessato a: *</label>
+                        <select id="interest" name="interest" required>
+                            <option value="">-- Seleziona un'opzione --</option>
+                            <option value="Membership Club">Membership Club - Voglio Viaggiare a Prezzi Scontati</option>
+                            <option value="Partnership Program">Partnership Program - Voglio Guadagnare da Partner</option>
+                            <option value="Entrambe">Entrambe le Opportunità</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="destination">Destinazione di Viaggio Preferita</label>
+                        <input type="text" id="destination" name="destination" placeholder="Es: Caraibi, Mediterraneo...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Esperienza con Crociere</label>
+                        <select id="experience" name="experience">
+                            <option value="">-- Seleziona --</option>
+                            <option value="Nessuna">Nessuna esperienza</option>
+                            <option value="1-2">1-2 crociere</option>
+                            <option value="3-5">3-5 crociere</option>
+                            <option value="5+">Più di 5 crociere</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Domande o Commenti</label>
+                        <textarea id="message" name="message" placeholder="Raccontaci le tue esigenze..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">Invia Richiesta</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- QUESTIONS SECTION -->
+        <div class="questions-section">
+            <h3 style="font-size: 1.8em; text-align: center; margin-bottom: 30px;">Domande Frequenti su inCruises</h3>
+            
+            <h3>📍 Qual
