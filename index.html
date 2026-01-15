@@ -5,13 +5,14 @@
   <title>Inizia a Risparmiare sulle Crociere con il Club inCruises</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Scopri come risparmiare fino al 50% sulle crociere con il Club inCruises: Membership, Partnership e Partner-Membro. Richiedi una consulenza gratuita." />
-
+  
   <!-- Font Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ===== VARIABILI CSS ===== */
     :root {
       --primary: #1272b9;
       --primary-dark: #0b4f82;
@@ -24,42 +25,70 @@
       --radius: 14px;
       --shadow-soft: 0 18px 45px rgba(0,0,0,0.08);
       --shadow-card: 0 12px 30px rgba(0,0,0,0.06);
+      --transition: 0.2s ease;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    /* ===== RESET E BASE ===== */
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+    
     body {
       font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.7;
       color: var(--text);
-      background: radial-gradient(circle at top left, #e6f2ff 0, #ffffff 45%, #f4f7fb 100%);
+      background: radial-gradient(circle at top left, #e6f2ff 0%, #ffffff 45%, #f4f7fb 100%);
+      overflow-x: hidden;
     }
-    a { text-decoration: none; color: inherit; }
+    
+    a { 
+      text-decoration: none; 
+      color: inherit; 
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
 
-    section { padding: 70px 20px; }
-    .container { max-width: 1140px; margin: 0 auto; }
+    /* ===== LAYOUT ===== */
+    section { 
+      padding: 70px 20px; 
+    }
+    
+    .container { 
+      max-width: 1140px; 
+      margin: 0 auto; 
+    }
 
-    /* HERO */
+    /* ===== HERO ===== */
     .hero {
       min-height: 88vh;
       display: flex;
       align-items: center;
-      background: radial-gradient(circle at 0% 0%, #2c9dff 0, #1272b9 35%, #061f3a 100%);
+      background: radial-gradient(circle at 0% 0%, #2c9dff 0%, #1272b9 35%, #061f3a 100%);
       color: #fff;
       padding: 40px 20px 80px;
       position: relative;
       overflow: hidden;
     }
+    
     .hero::before {
       content: "";
       position: absolute;
       width: 580px;
       height: 580px;
-      background: radial-gradient(circle, rgba(248,141,42,0.16) 0, transparent 60%);
+      background: radial-gradient(circle, rgba(248,141,42,0.16) 0%, transparent 60%);
       right: -120px;
       top: -80px;
       filter: blur(2px);
       opacity: 0.8;
+      pointer-events: none;
     }
+    
     .hero-inner {
       position: relative;
       z-index: 1;
@@ -68,35 +97,45 @@
       gap: 40px;
       align-items: center;
     }
+    
     .hero-kicker {
       font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.15em;
       color: #cbe5ff;
       margin-bottom: 10px;
+      font-weight: 500;
     }
+    
     .hero h1 {
       font-size: clamp(2.1rem, 3.4vw, 3.1rem);
       margin-bottom: 18px;
+      line-height: 1.2;
     }
+    
     .hero h1 span {
       background: linear-gradient(120deg, #fbbb21, #f88d2a);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      font-weight: 700;
     }
+    
     .hero p {
       font-size: 1rem;
       color: #e6f1ff;
       max-width: 540px;
       margin-bottom: 26px;
     }
+    
     .hero-ctas {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
       margin-bottom: 22px;
     }
+
+    /* ===== BOTTONI ===== */
     .btn-primary {
       position: relative;
       display: inline-flex;
@@ -110,8 +149,11 @@
       background-image: linear-gradient(135deg, #fbbb21, #f88d2a);
       box-shadow: 0 12px 30px rgba(248, 141, 42, 0.45);
       overflow: hidden;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+      border: none;
     }
+    
     .btn-primary::after {
       content: "";
       position: absolute;
@@ -119,12 +161,21 @@
       background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent 55%);
       opacity: 0;
       transition: opacity 0.25s ease;
+      pointer-events: none;
     }
+    
     .btn-primary:hover {
-      transform: translateY(-1px) scale(1.01);
+      transform: translateY(-2px) scale(1.02);
       box-shadow: 0 18px 40px rgba(248,141,42,0.6);
     }
-    .btn-primary:hover::after { opacity: 1; }
+    
+    .btn-primary:hover::after { 
+      opacity: 1; 
+    }
+    
+    .btn-primary:active {
+      transform: translateY(0) scale(0.99);
+    }
 
     .btn-ghost {
       border-radius: 999px;
@@ -137,8 +188,10 @@
       gap: 8px;
       backdrop-filter: blur(4px);
       background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-      transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+      transition: all var(--transition);
+      cursor: pointer;
     }
+    
     .btn-ghost:hover {
       background: linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04));
       border-color: rgba(255,255,255,0.6);
@@ -152,6 +205,7 @@
       font-size: 0.8rem;
       margin-top: 8px;
     }
+    
     .hero-badge {
       padding: 6px 10px;
       border-radius: 999px;
@@ -161,6 +215,7 @@
       backdrop-filter: blur(6px);
     }
 
+    /* ===== HERO PANEL ===== */
     .hero-panel {
       background: rgba(6, 18, 40, 0.78);
       border-radius: 22px;
@@ -169,75 +224,98 @@
       border: 1px solid rgba(255,255,255,0.09);
       backdrop-filter: blur(16px);
     }
+    
     .hero-panel h3 {
       font-size: 1rem;
       margin-bottom: 8px;
       color: #fefefe;
     }
+    
     .hero-panel small {
       display: block;
       font-size: 0.8rem;
       color: #c6d5ff;
       margin-bottom: 12px;
     }
+    
     .hero-metrics {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
       margin-bottom: 12px;
     }
+    
     .metric {
       background: radial-gradient(circle at top left, rgba(248,141,42,0.12), rgba(10,33,72,0.95));
       border-radius: 14px;
       padding: 10px 12px;
       border: 1px solid rgba(255,255,255,0.05);
     }
+    
     .metric span {
       display: block;
       font-size: 0.75rem;
       color: #d0defe;
       margin-bottom: 2px;
     }
+    
     .metric strong {
       font-size: 1.05rem;
       color: #ffffff;
     }
+    
     .hero-panel ul {
       list-style: none;
       font-size: 0.78rem;
       color: #c4d5ff;
       margin-top: 4px;
     }
+    
+    .hero-panel ul li {
+      margin-bottom: 4px;
+    }
+    
     .hero-panel ul li::before {
-      content: "• ";
+      content: "✓ ";
       color: #fbbb21;
+      font-weight: 700;
+      margin-right: 4px;
     }
 
-    /* SECTION BACKGROUNDS */
-    .section-light { background: #ffffff; }
-    .section-alt   { background: var(--bg-alt); }
+    /* ===== SECTION BACKGROUNDS ===== */
+    .section-light { 
+      background: #ffffff; 
+    }
+    
+    .section-alt { 
+      background: var(--bg-alt); 
+    }
 
-    /* DIVIDERS */
+    /* ===== DIVIDERS ===== */
     .divider {
       line-height: 0;
       overflow: hidden;
     }
+    
     .divider svg {
       display: block;
       width: 100%;
       height: 70px;
     }
+    
     .divider-top svg {
       transform: rotate(180deg);
     }
 
-    /* SEZIONI GENERALI */
+    /* ===== TITOLI SEZIONI ===== */
     h2.section-title {
       font-size: 1.9rem;
       margin-bottom: 10px;
       text-align: center;
       color: var(--primary-dark);
+      font-weight: 700;
     }
+    
     .section-subtitle {
       text-align: center;
       max-width: 720px;
@@ -245,14 +323,25 @@
       font-size: 0.98rem;
       color: var(--text-soft);
     }
+
+    /* ===== FLEX GRID ===== */
     .flex {
       display: flex;
       flex-wrap: wrap;
       gap: 22px;
     }
-    .flex-2 { flex: 1 1 48%; }
-    .flex-3 { flex: 1 1 30%; }
+    
+    .flex-2 { 
+      flex: 1 1 calc(50% - 11px);
+      min-width: 280px;
+    }
+    
+    .flex-3 { 
+      flex: 1 1 calc(33.333% - 15px);
+      min-width: 260px;
+    }
 
+    /* ===== CARDS ===== */
     .card {
       background: #ffffff;
       border-radius: var(--radius);
@@ -260,9 +349,10 @@
       box-shadow: var(--shadow-card);
       position: relative;
       overflow: hidden;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
       border: 1px solid rgba(148,163,184,0.18);
     }
+    
     .card::before {
       content: "";
       position: absolute;
@@ -270,63 +360,110 @@
       background: radial-gradient(circle at top left, rgba(248,141,42,0.08), transparent 55%);
       opacity: 0;
       transition: opacity 0.25s ease;
+      pointer-events: none;
     }
+    
     .card:hover {
       transform: translateY(-4px);
       box-shadow: 0 18px 40px rgba(15,23,42,0.14);
       border-color: rgba(37,99,235,0.45);
     }
-    .card:hover::before { opacity: 1; }
+    
+    .card:hover::before { 
+      opacity: 1; 
+    }
 
     .card h3 {
       font-size: 1.05rem;
       margin-bottom: 8px;
       color: var(--primary-dark);
+      font-weight: 600;
     }
+    
     .card p {
       font-size: 0.9rem;
       color: var(--text-soft);
+      line-height: 1.6;
     }
-    ul { margin-left: 18px; }
-    ul li { margin-bottom: 7px; }
+    
+    ul { 
+      margin-left: 18px; 
+    }
+    
+    ul li { 
+      margin-bottom: 7px; 
+    }
 
-    /* TABELLONE PIANI */
+    /* ===== TABELLA PIANI ===== */
+    .table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 10px;
       font-size: 0.9rem;
+      min-width: 800px;
     }
+    
     thead {
       background: linear-gradient(120deg, #e5f0ff, #f8fafc);
     }
+    
     th, td {
       padding: 11px 10px;
       border-bottom: 1px solid #e2e8f0;
       vertical-align: top;
+      text-align: left;
     }
-    th { text-align: left; font-weight: 600; color: #1e293b; }
-    tbody tr:nth-child(odd) { background: #f9fbff; }
-    tbody tr:hover { background: #eef4ff; }
+    
+    th { 
+      font-weight: 600; 
+      color: #1e293b; 
+    }
+    
+    tbody tr:nth-child(odd) { 
+      background: #f9fbff; 
+    }
+    
+    tbody tr:hover { 
+      background: #eef4ff; 
+    }
+    
+    tbody tr td:first-child {
+      font-weight: 600;
+    }
 
-    /* TESTIMONIALS */
+    /* ===== TESTIMONIALS ===== */
     .testimonial {
       background: linear-gradient(135deg, #ffffff, #f3f6ff);
       border-radius: 16px;
-      padding: 16px 18px 14px;
+      padding: 20px 18px 14px;
       border: 1px solid rgba(148,163,184,0.45);
       font-size: 0.9rem;
       position: relative;
       box-shadow: 0 10px 28px rgba(15,23,42,0.06);
+      transition: transform var(--transition), box-shadow var(--transition);
     }
+    
+    .testimonial:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(15,23,42,0.1);
+    }
+    
     .testimonial::before {
-      content: "“";
+      content: """;
       position: absolute;
       font-size: 3rem;
       color: rgba(148,163,184,0.25);
-      top: -16px;
+      top: -10px;
       left: 10px;
+      line-height: 1;
+      font-family: Georgia, serif;
     }
+    
     .testimonial strong {
       display: block;
       margin-top: 10px;
@@ -334,9 +471,10 @@
       color: #475569;
       text-transform: uppercase;
       letter-spacing: 0.08em;
+      font-weight: 600;
     }
 
-    /* CTA FINALE */
+    /* ===== CTA FINALE ===== */
     .cta-final {
       background: linear-gradient(135deg, #061a36, #0b4f82);
       color: #fff;
@@ -345,25 +483,37 @@
       position: relative;
       overflow: hidden;
     }
+    
     .cta-final::before {
       content: "";
       position: absolute;
       width: 520px;
       height: 520px;
-      background: radial-gradient(circle, rgba(248,141,42,0.28) 0, transparent 60%);
+      background: radial-gradient(circle, rgba(248,141,42,0.28) 0%, transparent 60%);
       left: -160px;
       bottom: -140px;
       opacity: 0.9;
       filter: blur(3px);
+      pointer-events: none;
     }
+    
     .cta-final-inner {
       position: relative;
       z-index: 1;
     }
-    .cta-final h2 { margin-bottom: 10px; font-size: 1.9rem; }
-    .cta-final p { margin-bottom: 26px; color: #e5edff; font-size: 0.98rem; }
+    
+    .cta-final h2 { 
+      margin-bottom: 10px; 
+      font-size: 1.9rem; 
+    }
+    
+    .cta-final p { 
+      margin-bottom: 26px; 
+      color: #e5edff; 
+      font-size: 0.98rem; 
+    }
 
-    /* FORM */
+    /* ===== FORM ===== */
     .lead-form {
       max-width: 460px;
       margin: 0 auto;
@@ -375,32 +525,42 @@
       box-shadow: 0 16px 40px rgba(0,0,0,0.35);
       backdrop-filter: blur(12px);
     }
+    
     .lead-form label {
       display: block;
       margin-bottom: 4px;
       font-size: 0.8rem;
       color: #cdd9ff;
+      font-weight: 500;
     }
+    
     .lead-form input,
     .lead-form textarea,
     .lead-form select {
       width: 100%;
-      padding: 9px 10px;
+      padding: 10px 12px;
       margin-bottom: 12px;
       border-radius: 10px;
       border: 1px solid rgba(148,163,184,0.6);
       background: rgba(15,23,42,0.96);
       color: #e5edff;
       font-size: 0.86rem;
+      font-family: inherit;
       outline: none;
       transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
     }
+    
     .lead-form input:focus,
     .lead-form textarea:focus,
     .lead-form select:focus {
       border-color: #fbbb21;
-      box-shadow: 0 0 0 1px rgba(248,189,33,0.4);
+      box-shadow: 0 0 0 3px rgba(248,189,33,0.2);
       background: rgba(15,23,42,0.98);
+    }
+    
+    .lead-form textarea {
+      resize: vertical;
+      min-height: 80px;
     }
 
     .btn-secondary {
@@ -417,32 +577,93 @@
       width: 100%;
       font-size: 0.92rem;
       box-shadow: 0 12px 26px rgba(248,141,42,0.55);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform var(--transition), box-shadow var(--transition);
+      font-family: inherit;
     }
+    
     .btn-secondary:hover {
       transform: translateY(-1px) scale(1.01);
       box-shadow: 0 18px 38px rgba(248,141,42,0.7);
     }
+    
+    .btn-secondary:active {
+      transform: translateY(0) scale(0.99);
+    }
 
-    /* RESPONSIVE */
+    /* ===== UTILITY ===== */
+    .text-note {
+      font-size: 0.85rem;
+      margin-top: 12px;
+      color: #4b5563;
+    }
+
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 920px) {
       .hero-inner {
         grid-template-columns: minmax(0, 1fr);
       }
+      
       .hero-panel {
         margin-top: 18px;
       }
     }
+    
     @media (max-width: 768px) {
-      section { padding: 60px 18px; }
-      .flex-2, .flex-3 { flex: 1 1 100%; }
-      .divider svg { height: 50px; }
+      section { 
+        padding: 60px 18px; 
+      }
+      
+      .flex-2, .flex-3 { 
+        flex: 1 1 100%; 
+      }
+      
+      .divider svg { 
+        height: 50px; 
+      }
+      
+      .hero {
+        min-height: auto;
+        padding: 50px 20px 60px;
+      }
+      
+      h2.section-title {
+        font-size: 1.6rem;
+      }
+      
+      table {
+        font-size: 0.8rem;
+      }
+      
+      th, td {
+        padding: 8px 6px;
+      }
+    }
+
+    /* ===== ACCESSIBILITÀ ===== */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Focus visibile per accessibilità */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible {
+      outline: 2px solid var(--accent-soft);
+      outline-offset: 2px;
     }
   </style>
 </head>
 <body>
 
-  <!-- HERO -->
+  <!-- ========== HERO ========== -->
   <header class="hero" id="top">
     <div class="container hero-inner">
       <div>
@@ -450,22 +671,22 @@
         <h1>Scopri il Club che ti fa <span>risparmiare fino al 50%</span> sulle crociere</h1>
         <p>
           Entra nel Club inCruises e trasforma i tuoi pagamenti mensili in Crediti Premio,
-          prenotando crociere e hotel a prezzi esclusivi INsider, spesso inferiori al pubblico.[file:5][file:1]
+          prenotando crociere e hotel a prezzi esclusivi INsider, spesso inferiori al pubblico.
         </p>
         <div class="hero-ctas">
           <a href="#form" class="btn-primary">RICHIEDI UNA CONSULENZA GRATUITA</a>
           <a href="#piani" class="btn-ghost">Vedi piani Membership</a>
         </div>
         <div class="hero-badges">
-          <div class="hero-badge">Risparmi immediati con prezzi INsider.[file:5]</div>
-          <div class="hero-badge">Fino al 50% sulle crociere con Crediti Premio.[file:5][file:1]</div>
-          <div class="hero-badge">Possibilità di reddito come Partner-Membro.[file:4][file:5]</div>
+          <div class="hero-badge">Risparmi immediati con prezzi INsider</div>
+          <div class="hero-badge">Fino al 50% sulle crociere con Crediti Premio</div>
+          <div class="hero-badge">Possibilità di reddito come Partner-Membro</div>
         </div>
       </div>
 
       <aside class="hero-panel">
         <h3>Anteprima dei tuoi vantaggi</h3>
-        <small>Estratto dalla documentazione ufficiale del Club.[file:5][file:1]</small>
+        <small>Estratto dalla documentazione ufficiale del Club</small>
         <div class="hero-metrics">
           <div class="metric">
             <span>Risparmio immediato</span>
@@ -485,28 +706,28 @@
           </div>
         </div>
         <ul>
-          <li>Pagamenti protetti da Trust My Travel.[file:5]</li>
-          <li>Garanzia Parità Prezzo Crociere su offerte idonee.[file:1]</li>
-          <li>Dal 2015 migliaia di Membri attivi nel mondo.[file:5]</li>
+          <li>Pagamenti protetti da Trust My Travel</li>
+          <li>Garanzia Parità Prezzo Crociere su offerte idonee</li>
+          <li>Dal 2015 migliaia di Membri attivi nel mondo</li>
         </ul>
       </aside>
     </div>
   </header>
 
-  <!-- DIVIDER HERO -> COME FUNZIONA -->
+  <!-- Divider -->
   <div class="divider divider-bottom">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
       <path fill="#ffffff" d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,80C1120,85,1280,75,1360,69.3L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
     </svg>
   </div>
 
-  <!-- COME FUNZIONA -->
+  <!-- ========== COME FUNZIONA ========== -->
   <section id="come-funziona" class="section-light">
     <div class="container">
       <h2 class="section-title">Come funziona il Club in 3 passi</h2>
       <p class="section-subtitle">
         Scegli il tuo piano, accumula Crediti Premio ogni mese e prenota crociere e hotel
-        sfruttando i prezzi INsider e gli sconti aggiuntivi offerti ai Membri del Club.[file:5][file:1]
+        sfruttando i prezzi INsider e gli sconti aggiuntivi offerti ai Membri del Club.
       </p>
 
       <div class="flex">
@@ -514,52 +735,52 @@
           <h3>1. Scegli la Membership</h3>
           <p>
             Seleziona il piano Starter, Classic o Premium in base al tuo budget
-            e a quante volte vuoi viaggiare ogni anno.[file:5]
+            e a quante volte vuoi viaggiare ogni anno.
           </p>
         </div>
         <div class="flex-3 card">
           <h3>2. Accumula Crediti Premio</h3>
           <p>
             I tuoi pagamenti mensili si trasformano in Crediti Premio che possono
-            raddoppiare il loro valore se paghi puntualmente, aumentando il potere d’acquisto.[file:5]
+            raddoppiare il loro valore se paghi puntualmente, aumentando il potere d'acquisto.
           </p>
         </div>
         <div class="flex-3 card">
           <h3>3. Prenota con Prezzi INsider</h3>
           <p>
             Prenota crociere e hotel con tariffe INsider spesso inferiori ai prezzi pubblici
-            e usa i Crediti Premio per ridurre ulteriormente il costo delle crociere.[file:5][file:1]
+            e usa i Crediti Premio per ridurre ulteriormente il costo delle crociere.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- DIVIDER COME FUNZIONA -> ESEMPI -->
+  <!-- Divider -->
   <div class="divider divider-top">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
       <path fill="#f9fbff" d="M0,96L80,80C160,64,320,32,480,26.7C640,21,800,43,960,58.7C1120,75,1280,85,1360,90.7L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
     </svg>
   </div>
 
-  <!-- ESEMPI -->
+  <!-- ========== ESEMPI ========== -->
   <section id="esempi" class="section-alt">
     <div class="container">
       <h2 class="section-title">Esempi reali di risparmio</h2>
       <p class="section-subtitle">
-        Alcuni esempi concreti, tratti dai documenti ufficiali, per mostrarti l’impatto
-        dei prezzi INsider e dei Crediti Premio sulle tue prossime vacanze.[file:5][file:1]
+        Alcuni esempi concreti, tratti dai documenti ufficiali, per mostrarti l'impatto
+        dei prezzi INsider e dei Crediti Premio sulle tue prossime vacanze.
       </p>
 
       <div class="flex">
         <div class="flex-2 card">
           <h3>Esempio 1 – Crociera da 3.000€</h3>
           <ul>
-            <li>Prezzo al pubblico crociera per 2 persone: 3.000€ (tasse incluse).[file:5]</li>
-            <li>Membro attivo con 1.500 Crediti Premio.[file:5]</li>
+            <li>Prezzo al pubblico crociera per 2 persone: <strong>3.000€</strong> (tasse incluse)</li>
+            <li>Membro attivo con 1.500 Crediti Premio</li>
             <li>
-              Applica 1.500 Crediti Premio e paga solo 1.500€ di tasca propria,
-              dimezzando il costo effettivo della crociera.[file:5]
+              Applica 1.500 Crediti Premio e paga solo <strong>1.500€</strong> di tasca propria,
+              dimezzando il costo effettivo della crociera
             </li>
           </ul>
         </div>
@@ -567,13 +788,13 @@
         <div class="flex-2 card">
           <h3>Esempio 2 – Risparmio multilivello (USD)</h3>
           <ul>
-            <li>Prezzo diretto compagnia di crociera: 6.111,57 USD.[file:1]</li>
-            <li>Prezzo di listino inCruises: 5.845,14 USD (già inferiore al pubblico).[file:1]</li>
-            <li>Prezzo INsider (−17% sul listino): 4.696,32 USD.[file:1]</li>
+            <li>Prezzo diretto compagnia di crociera: <strong>6.111,57 USD</strong></li>
+            <li>Prezzo di listino inCruises: <strong>5.845,14 USD</strong> (già inferiore al pubblico)</li>
+            <li>Prezzo INsider (−17% sul listino): <strong>4.696,32 USD</strong></li>
             <li>
               Usando il 50% in Crediti Premio:
-              2.929,07 USD in crediti + 1.464,35 USD di tasca propria
-              per un esborso complessivo di 4.393,61 USD.[file:1]
+              2.929,07 USD in crediti + <strong>1.464,35 USD</strong> di tasca propria
+              per un esborso complessivo di 4.393,61 USD
             </li>
           </ul>
         </div>
@@ -583,100 +804,102 @@
         <h3>Esempio 3 – Partner-Membro con vantaggi massimi</h3>
         <p>
           Con Membership Gratuita e Vantaggi di Viaggio Elite, un Partner-Membro qualificato
-          può arrivare a coprire fino al 100% del valore crociera con i Crediti Premio,
-          azzerando i costi di tasca propria su crociere idonee.[file:4][file:1]
+          può arrivare a coprire fino al <strong>100% del valore crociera</strong> con i Crediti Premio,
+          azzerando i costi di tasca propria su crociere idonee.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- DIVIDER ESEMPI -> PIANI -->
+  <!-- Divider -->
   <div class="divider divider-bottom">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
       <path fill="#ffffff" d="M0,32L80,42.7C160,53,320,75,480,80C640,85,800,75,960,74.7C1120,75,1280,85,1360,90.7L1440,96L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
     </svg>
   </div>
 
-  <!-- PIANI -->
+  <!-- ========== PIANI ========== -->
   <section id="piani" class="section-light">
     <div class="container">
       <h2 class="section-title">I piani di Membership</h2>
       <p class="section-subtitle">
         Tutti i piani trasformano le tue quote in Crediti Premio e ti danno accesso
-        ai prezzi INsider su crociere, hotel e resort in tutto il mondo.[file:5]
+        ai prezzi INsider su crociere, hotel e resort in tutto il mondo.
       </p>
 
       <div class="card">
-        <table>
-          <thead>
-            <tr>
-              <th>Piano</th>
-              <th>Attivazione</th>
-              <th>Quota mensile</th>
-              <th>Crediti iniziali</th>
-              <th>Crediti mensili (puntuali)</th>
-              <th>Prenotazioni INsider/anno</th>
-              <th>Crediti su crociere</th>
-              <th>Crediti su hotel</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Starter</strong></td>
-              <td>50€ una tantum.[file:5]</td>
-              <td>50€/mese.[file:5]</td>
-              <td>100 Crediti Premio all’iscrizione.[file:5]</td>
-              <td>50 Crediti Premio al mese con pagamenti puntuali.[file:5]</td>
-              <td>2 prenotazioni INsider all’anno.[file:5]</td>
-              <td>Fino al 50% del prezzo al dettaglio crociere.[file:5][web:19]</td>
-              <td>Fino al 17% del prezzo al dettaglio hotel/resort.[file:5][web:19]</td>
-            </tr>
-            <tr>
-              <td><strong>Classic</strong></td>
-              <td>100€ una tantum.[file:5]</td>
-              <td>100€/mese.[file:5]</td>
-              <td>350 Crediti Premio all’iscrizione.[file:5]</td>
-              <td>200 Crediti Premio al mese con pagamenti puntuali.[file:5]</td>
-              <td>5 prenotazioni INsider all’anno.[file:5]</td>
-              <td>Fino al 50% del prezzo al dettaglio crociere.[file:5][web:19]</td>
-              <td>Fino al 17% del prezzo al dettaglio hotel/resort.[file:5][web:19]</td>
-            </tr>
-            <tr>
-              <td><strong>Premium</strong></td>
-              <td>250€ una tantum.[file:5]</td>
-              <td>250€/mese.[file:5]</td>
-              <td>800 Crediti Premio all’iscrizione.[file:5]</td>
-              <td>500 Crediti Premio al mese con pagamenti puntuali.[file:5]</td>
-              <td>Prenotazioni INsider illimitate ogni anno.[file:5]</td>
-              <td>Fino al 50% del prezzo al dettaglio crociere.[file:5]</td>
-              <td>Fino al 17% del prezzo al dettaglio hotel/resort.[file:5]</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Piano</th>
+                <th>Attivazione</th>
+                <th>Quota mensile</th>
+                <th>Crediti iniziali</th>
+                <th>Crediti mensili (puntuali)</th>
+                <th>Prenotazioni INsider/anno</th>
+                <th>Crediti su crociere</th>
+                <th>Crediti su hotel</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Starter</strong></td>
+                <td>50€ una tantum</td>
+                <td>50€/mese</td>
+                <td>100 Crediti Premio all'iscrizione</td>
+                <td>50 Crediti Premio al mese con pagamenti puntuali</td>
+                <td>2 prenotazioni INsider all'anno</td>
+                <td>Fino al 50% del prezzo al dettaglio crociere</td>
+                <td>Fino al 17% del prezzo al dettaglio hotel/resort</td>
+              </tr>
+              <tr>
+                <td><strong>Classic</strong></td>
+                <td>100€ una tantum</td>
+                <td>100€/mese</td>
+                <td>350 Crediti Premio all'iscrizione</td>
+                <td>200 Crediti Premio al mese con pagamenti puntuali</td>
+                <td>5 prenotazioni INsider all'anno</td>
+                <td>Fino al 50% del prezzo al dettaglio crociere</td>
+                <td>Fino al 17% del prezzo al dettaglio hotel/resort</td>
+              </tr>
+              <tr>
+                <td><strong>Premium</strong></td>
+                <td>250€ una tantum</td>
+                <td>250€/mese</td>
+                <td>800 Crediti Premio all'iscrizione</td>
+                <td>500 Crediti Premio al mese con pagamenti puntuali</td>
+                <td>Prenotazioni INsider illimitate ogni anno</td>
+                <td>Fino al 50% del prezzo al dettaglio crociere</td>
+                <td>Fino al 17% del prezzo al dettaglio hotel/resort</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-        <p style="font-size:0.85rem; margin-top:12px; color:#4b5563;">
+        <p class="text-note">
           Tutti i pagamenti di Membership sono protetti da Trust My Travel, che garantisce
           il rimborso del valore netto non utilizzato in caso di improbabile fallimento
-          finanziario della società.[file:5]
+          finanziario della società.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- DIVIDER PIANI -> PARTNERSHIP -->
+  <!-- Divider -->
   <div class="divider divider-top">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
       <path fill="#f9fbff" d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,80C1120,85,1280,75,1360,69.3L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
     </svg>
   </div>
 
-  <!-- PARTNERSHIP -->
+  <!-- ========== PARTNERSHIP ========== -->
   <section id="partnership" class="section-alt">
     <div class="container">
       <h2 class="section-title">Partnership &amp; Partner-Membro</h2>
       <p class="section-subtitle">
-        Se ami viaggiare e vuoi creare un’entrata extra, la Partnership inCruises ti offre
-        5 fonti di reddito e incentivi di viaggio esclusivi.[file:4]
+        Se ami viaggiare e vuoi creare un'entrata extra, la Partnership inCruises ti offre
+        5 fonti di reddito e incentivi di viaggio esclusivi.
       </p>
 
       <div class="flex">
@@ -684,16 +907,16 @@
           <h3>Diventare Partner</h3>
           <ul>
             <li>
-              Aggiorna il tuo profilo con 95€ per diventare Partner o Partner-Membro
-              e rinnova ogni 6 mesi per rimanere idoneo ai compensi.[file:4][file:5]
+              Aggiorna il tuo profilo con <strong>95€</strong> per diventare Partner o Partner-Membro
+              e rinnova ogni 6 mesi per rimanere idoneo ai compensi
             </li>
             <li>
               Accedi a 5 fonti di reddito: Bonus di Attivazione, Bonus Equivalente Settimanale,
-              Bonus di Leadership del Team, Reddito Ricorrente e Bonus Base Costruttori.[file:4]
+              Bonus di Leadership del Team, Reddito Ricorrente e Bonus Base Costruttori
             </li>
             <li>
               Ricevi i pagamenti tramite sistemi internazionali come inPay, Payoneer,
-              Hyperwallet, PayQuicker o iPayout.[file:4]
+              Hyperwallet, PayQuicker o iPayout
             </li>
           </ul>
         </div>
@@ -703,16 +926,16 @@
           <ul>
             <li>
               Unisci tutti i vantaggi del Membro a quelli del Partner:
-              viaggi a condizioni speciali e accesso completo al piano compensi.[file:4][file:5]
+              viaggi a condizioni speciali e accesso completo al piano compensi
             </li>
             <li>
-              Con 500 di produzione diretta mensile puoi ottenere Membership Gratuita
-              (fino a 100€ di quota coperti) e fino a 200 Crediti Premio extra.[file:4]
+              Con 500 di produzione diretta mensile puoi ottenere <strong>Membership Gratuita</strong>
+              (fino a 100€ di quota coperti) e fino a 200 Crediti Premio extra
             </li>
             <li>
               Dal rango Marketing Director in su, dopo 3 mesi di Bonus Leadership,
-              puoi usare i Crediti Premio per coprire fino al 100% del prezzo al dettaglio
-              delle crociere idonee.[file:4][file:1]
+              puoi usare i Crediti Premio per coprire fino al <strong>100% del prezzo al dettaglio</strong>
+              delle crociere idonee
             </li>
           </ul>
         </div>
@@ -722,79 +945,79 @@
         <h3>Concorsi e viaggi incentive</h3>
         <p>
           Ogni settimana e ogni mese, inCruises premia i migliori Partner con fino a
-          500 Crediti Premio da usare per crociere, hotel e resort, oltre a viaggi
-          incentive a 5 stelle nei Global Leadership Summit.[file:3][file:4]
+          <strong>500 Crediti Premio</strong> da usare per crociere, hotel e resort, oltre a viaggi
+          incentive a 5 stelle nei Global Leadership Summit.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- DIVIDER PARTNERSHIP -> RECENSIONI -->
+  <!-- Divider -->
   <div class="divider divider-bottom">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
       <path fill="#ffffff" d="M0,32L80,42.7C160,53,320,75,480,80C640,85,800,75,960,74.7C1120,75,1280,85,1360,90.7L1440,96L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
     </svg>
   </div>
 
-  <!-- RECENSIONI -->
+  <!-- ========== RECENSIONI ========== -->
   <section id="recensioni" class="section-light">
     <div class="container">
       <h2 class="section-title">Cosa dicono i Membri</h2>
       <p class="section-subtitle">
         inCruises raccoglie migliaia di recensioni su Trustpilot con valutazione media
-        “Eccellente” in italiano e in altre lingue, oltre a testimonianze sul sito ufficiale.[web:28][web:13]
+        "Eccellente" in italiano e in altre lingue, oltre a testimonianze sul sito ufficiale.
       </p>
 
       <div class="flex">
         <div class="flex-3 testimonial">
           Club fantastico. Grazie a questo sistema ho portato la mia famiglia in crociera
-          risparmiando rispetto ai prezzi delle agenzie tradizionali.[web:28]
+          risparmiando rispetto ai prezzi delle agenzie tradizionali.
           <strong>Membro Club, Italia</strong>
         </div>
         <div class="flex-3 testimonial">
           Sono iscritta da oltre due anni e adoro il fatto che le quote mensili si trasformino
-          in crediti che mi permettono di programmare una vacanza ogni anno.[web:28]
+          in crediti che mi permettono di programmare una vacanza ogni anno.
           <strong>Membro Classic, Europa</strong>
         </div>
         <div class="flex-3 testimonial">
-          Come Partner-Membro ho ottenuto viaggi incentive e un’entrata extra.
-          Richiede impegno e costanza, ma per me ne è valsa la pena.[web:28][web:32]
-          <strong>Partner-Membro, testimoni individuali</strong>
+          Come Partner-Membro ho ottenuto viaggi incentive e un'entrata extra.
+          Richiede impegno e costanza, ma per me ne è valsa la pena.
+          <strong>Partner-Membro</strong>
         </div>
       </div>
 
-      <p style="font-size:0.85rem; margin-top:14px; color:#4b5563;">
+      <p class="text-note">
         Nota: le esperienze sono personali e non garantiscono risultati identici.
         Esistono anche recensioni critiche; valuta sempre in autonomia se questa
-        opportunità è adatta alle tue esigenze.[web:22][web:26]
+        opportunità è adatta alle tue esigenze.
       </p>
 
-      <p style="margin-top:8px; font-size:0.9rem;">
+      <p style="margin-top:8px; font-size:0.9rem; text-align: center;">
         Leggi le recensioni complete su
-        <a href="https://it.trustpilot.com/review/www.incruises.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://it.trustpilot.com/review/www.incruises.com" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">
           Trustpilot
-        </a>.
+        </a>
       </p>
     </div>
   </section>
 
-  <!-- DIVIDER RECENSIONI -> FORM -->
+  <!-- Divider -->
   <div class="divider divider-top">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
       <path fill="#061a36" d="M0,96L80,80C160,64,320,32,480,26.7C640,21,800,43,960,58.7C1120,75,1280,85,1360,90.7L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
     </svg>
   </div>
 
-  <!-- CTA + FORM -->
+  <!-- ========== CTA + FORM ========== -->
   <section id="form" class="cta-final">
     <div class="container cta-final-inner">
       <h2>Pronto a trovare il piano perfetto per te?</h2>
       <p>
         Compila il modulo e ricevi una videochiamata o una consulenza telefonica gratuita
-        per capire come risparmiare sulla tua prossima crociera o come iniziare come Partner-Membro.[file:5][file:4]
+        per capire come risparmiare sulla tua prossima crociera o come iniziare come Partner-Membro.
       </p>
 
-      <form class="lead-form">
+      <form class="lead-form" action="#" method="POST">
         <label for="nome">Nome e cognome</label>
         <input type="text" id="nome" name="nome" placeholder="Il tuo nome completo" required />
 
@@ -814,17 +1037,17 @@
         <label for="messaggio">Messaggio (opzionale)</label>
         <textarea id="messaggio" name="messaggio" rows="4" placeholder="Scrivi qui le tue domande o la prossima meta che vorresti visitare..."></textarea>
 
-        <!-- Imposta action/method secondo il tuo sistema (es. CRM, autoresponder) -->
         <button type="submit" class="btn-secondary">INVIA LA TUA RICHIESTA</button>
       </form>
 
       <p style="margin-top:16px; font-size:0.8rem; color:#cbd5f5;">
-        DISCLAIMER: Questa pagina ha scopo informativo e promozionale.
+        <strong>DISCLAIMER:</strong> Questa pagina ha scopo informativo e promozionale.
         Ogni risultato economico come Partner dipende dal tuo impegno, dalla capacità
-        di vendita e da altri fattori esterni; non è garantito alcun reddito.[file:4][web:15]
+        di vendita e da altri fattori esterni; non è garantito alcun reddito.
       </p>
     </div>
   </section>
 
 </body>
 </html>
+
