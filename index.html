@@ -636,13 +636,25 @@
       font-family: inherit;
     }
     
-    .btn-secondary:hover {
+    .btn-secondary:hover:not(:disabled) {
       transform: translateY(-1px) scale(1.01);
       box-shadow: 0 18px 38px rgba(248,141,42,0.7);
     }
     
     .btn-secondary:active {
       transform: translateY(0) scale(0.99);
+    }
+
+    .btn-secondary:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    #formMessage {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 500;
     }
 
     /* ===== UTILITY ===== */
@@ -1138,7 +1150,7 @@
         per capire come risparmiare sulla tua prossima crociera o come iniziare come Partner-Membro.
       </p>
 
-      <form class="lead-form" action="#" method="POST">
+      <form class="lead-form" id="contactForm">
         <label for="nome">Nome e cognome</label>
         <input type="text" id="nome" name="nome" placeholder="Il tuo nome completo" required />
 
@@ -1150,15 +1162,20 @@
 
         <label for="interesse">Sono interessato principalmente a</label>
         <select id="interesse" name="interesse">
-          <option value="membership">Risparmiare sulle crociere (Membership)</option>
-          <option value="partnership">Creare un reddito extra (Partnership)</option>
-          <option value="partner-membro">Entrambe: viaggi + reddito (Partner-Membro)</option>
+          <option value="Membership - Risparmiare sulle crociere">Risparmiare sulle crociere (Membership)</option>
+          <option value="Partnership - Creare un reddito extra">Creare un reddito extra (Partnership)</option>
+          <option value="Partner-Membro - Viaggi + reddito">Entrambe: viaggi + reddito (Partner-Membro)</option>
         </select>
 
         <label for="messaggio">Messaggio (opzionale)</label>
         <textarea id="messaggio" name="messaggio" rows="4" placeholder="Scrivi qui le tue domande o la prossima meta che vorresti visitare..."></textarea>
 
-        <button type="submit" class="btn-secondary">INVIA LA TUA RICHIESTA</button>
+        <button type="submit" class="btn-secondary" id="submitBtn">
+          <span id="btnText">INVIA LA TUA RICHIESTA</span>
+          <span id="btnLoader" style="display:none;">⏳ Invio in corso...</span>
+        </button>
+        
+        <div id="formMessage"></div>
       </form>
 
       <p style="margin-top:16px; font-size:0.8rem; color:#cbd5f5;">
@@ -1168,6 +1185,71 @@
       </p>
     </div>
   </section>
+
+  <!-- ========== JAVASCRIPT FORM ========== -->
+  <script>
+    // ⚠️ SOSTITUISCI QUESTO URL CON IL TUO URL DELLO SCRIPT GOOGLE APPS
+    const SCRIPT_URL = 'https://script.google.com/macros/s/IL_TUO_URL_GOOGLE_SCRIPT_QUI/exec';
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      const btnLoader = document.getElementById('btnLoader');
+      const formMessage = document.getElementById('formMessage');
+      
+      // Disabilita il bottone e mostra loading
+      submitBtn.disabled = true;
+      btnText.style.display = 'none';
+      btnLoader.style.display = 'inline';
+      formMessage.textContent = '';
+      formMessage.style.color = '';
+      
+      // Raccogli i dati del form
+      const formData = {
+        nome: document.getElementById('nome').value,
+        email: document.getElementById('email').value,
+        telefono: document.getElementById('telefono').value || 'Non fornito',
+        interesse: document.getElementById('interesse').value,
+        messaggio: document.getElementById('messaggio').value || 'Nessun messaggio'
+      };
+      
+      // Invia i dati a Google Sheets
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        // Successo (mode: no-cors non restituisce response leggibile)
+        formMessage.innerHTML = '✓ Richiesta inviata con successo! Ti contatteremo presto.';
+        formMessage.style.color = '#4ade80';
+        document.getElementById('contactForm').reset();
+        
+        // Riabilita il bottone dopo 3 secondi
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          btnText.style.display = 'inline';
+          btnLoader.style.display = 'none';
+          formMessage.textContent = '';
+        }, 4000);
+      })
+      .catch(error => {
+        // Errore
+        formMessage.innerHTML = '✗ Errore nell\'invio. Riprova o contattaci direttamente via email.';
+        formMessage.style.color = '#f87171';
+        submitBtn.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoader.style.display = 'none';
+        
+        console.error('Errore invio form:', error);
+      });
+    });
+  </script>
 
 </body>
 </html>
