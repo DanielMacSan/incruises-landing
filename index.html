@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>inCruises - Viaggia Risparmiando fino al 50%</title>
+  <title>inCruises - Nessuno Fa Crociere Meglio!</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
     .hero { background: linear-gradient(135deg, #0066cc 0%, #004d99 100%); color: white; padding: 60px 20px; text-align: center; }
-    .hero h1 { font-size: 2.5em; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero h1 { font-size: 2.5em; margin-bottom: 20px; }
     .hero p { font-size: 1.3em; margin-bottom: 30px; }
     .section { padding: 50px 20px; text-align: center; background: #f8f9fa; }
     .section h2 { color: #0066cc; margin-bottom: 40px; font-size: 2em; }
@@ -42,11 +42,13 @@
     button[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.2); }
     footer { background: #333; color: white; text-align: center; padding: 20px; margin-top: 50px; }
     #reviewsSlider { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 30px auto; padding: 0 20px; }
-    .review-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; border-left: 4px solid #ffc107; }
+    .review-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #ffc107; min-height: 220px; }
     .review-card .stars { color: #ffc107; font-size: 1.2em; margin-bottom: 10px; }
-    .review-card p { color: #555; margin: 10px 0; font-size: 0.95em; }
-    .review-card .author { color: #0066cc; font-weight: bold; margin-top: 15px; }
+    .review-card p { color: #555; margin: 10px 0; font-size: 0.9em; line-height: 1.4; }
+    .review-card .author { color: #0066cc; font-weight: bold; margin-top: 12px; font-size: 0.95em; }
     .review-card .date { color: #999; font-size: 0.85em; margin-top: 5px; }
+    .trust-badge { background: #e8f4f8; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center; }
+    .trust-badge strong { color: #0066cc; }
     @media (max-width: 768px) {
       .hero h1 { font-size: 1.8em; }
       .partner-box { grid-template-columns: 1fr; }
@@ -57,122 +59,126 @@
 </head>
 <body>
   <section class="hero">
-    <h1>Scopri il Mondo delle Crociere con inCruises</h1>
-    <p>Viaggia Risparmiando fino al 50% con la Membership Club Esclusiva</p>
-    <p>✓ Sconto immediato del 17% | ✓ Accumula crediti premio | ✓ Migliaia di destinazioni</p>
+    <h1>🚢 Nessuno Fa Crociere Meglio di inCruises!</h1>
+    <p>Il Club di Viaggi a Premi più prezioso del mondo</p>
+    <p>Esplora, Scopri, Divertiti di più a MENO!</p>
+    <p style="font-size: 1em; margin-top: 20px;">✓ INsider Pricing: Sconto immediato del 17% | ✓ Crediti Premio: Risparmia fino al 50% | ✓ Over 21.000 crociere disponibili</p>
   </section>
 
   <section class="section white">
-    <h2>Scegli la Membership Perfetta per Te</h2>
-    <p>Tre piani flessibili per adattarsi a ogni esigenza di viaggio</p>
+    <h2>💎 Scegli il Piano di Membership Perfetto</h2>
+    <p>Quattro opzioni flessibili per ogni esigenza di viaggio - Dal 2015, rendiamo il lusso accessibile!</p>
+    
     <div class="pricing-grid">
+      <!-- STARTER -->
       <div class="price-card">
         <h3>🌟 STARTER</h3>
         <div class="cost">$50 <small>/mese</small></div>
-        <p>Perfetto per chi inizia a scoprire inCruises</p>
+        <p><strong>Il trampolino di lancio!</strong></p>
+        <p style="color: #666; font-size: 0.9em; margin: 10px 0;">Costo di attivazione: $50</p>
         <ul>
-          <li>Sconto del 17% su tutte le crociere</li>
-          <li>Accumulo punti premio</li>
+          <li>100 Crediti Premio all'iscrizione</li>
+          <li>50 Crediti Premio mensili</li>
+          <li>2 prenotazioni INsider Pricing annuali</li>
+          <li>Sconto immediato del 17%</li>
+          <li>Accesso portale esclusivo</li>
+        </ul>
+        <p style="color: #28a745; font-weight: bold; margin-top: 15px;">Upgrade gratuito a CLASSIC con 4 pagamenti puntuali!</p>
+        <a href="https://danielen_it.incruises.com/membership" class="btn">Inizia Ora</a>
+      </div>
+
+      <!-- CLASSIC -->
+      <div class="price-card">
+        <h3>💫 CLASSIC</h3>
+        <div class="cost">$100 <small>/mese</small></div>
+        <p><strong>Un successo comprovato!</strong></p>
+        <p style="color: #666; font-size: 0.9em; margin: 10px 0;">Costo di attivazione: $100</p>
+        <ul>
+          <li>350 Crediti Premio all'iscrizione</li>
+          <li>200 Crediti Premio mensili</li>
+          <li>5 prenotazioni INsider Pricing annuali</li>
+          <li>Sconto immediato del 17%</li>
+          <li>Crediti dopp con pagamenti puntuali</li>
+        </ul>
+        <p style="color: #0066cc; font-weight: bold; margin-top: 15px;">Grande Valore!</p>
+        <a href="https://danielen_it.incruises.com/membership" class="btn">Scopri Classic</a>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="price-card">
+        <h3>👑 PREMIUM</h3>
+        <div class="cost">$250 <small>/mese</small></div>
+        <p><strong>Massimo valore!</strong></p>
+        <p style="color: #666; font-size: 0.9em; margin: 10px 0;">Costo di attivazione: $250</p>
+        <ul>
+          <li>800 Crediti Premio all'iscrizione</li>
+          <li>500 Crediti Premio mensili</li>
+          <li>ACCESSO ILLIMITATO a INsider Pricing</li>
+          <li>Sconto immediato del 17%</li>
+          <li>Prenotazioni Premium disponibili</li>
+        </ul>
+        <p style="color: #0066cc; font-weight: bold; margin-top: 15px;">Molto di più di tutto ciò che ami!</p>
+        <a href="https://danielen_it.incruises.com/membership" class="btn">Diventa Premium</a>
+      </div>
+
+      <!-- GRATUITA -->
+      <div class="price-card">
+        <h3>🎁 GRATUITA (Con Partnership)</h3>
+        <div class="cost">$0 <small>/mese</small></div>
+        <p><strong>Opzione economica!</strong></p>
+        <p style="color: #666; font-size: 0.9em; margin: 10px 0;">Solo per Partner Attivi</p>
+        <ul>
+          <li>50 Crediti Premio all'iscrizione</li>
+          <li>Accesso a INsider Pricing</li>
+          <li>Utilizza Crediti Premio per sconti</li>
           <li>Supporto cliente 24/7</li>
-          <li>Accesso al portale esclusivo</li>
+          <li>Possibilità di guadagnare denaro</li>
         </ul>
-        <a href="https://danielen_it.incruises.com/membership" class="btn">Iscriviti Subito</a>
+        <p style="color: #28a745; font-weight: bold; margin-top: 15px;">Protezione Trust My Travel inclusa!</p>
+        <a href="https://danielen_it.incruises.com/partner" class="btn">Diventa Partner</a>
       </div>
-      <div class="price-card">
-        <h3>💎 PREMIUM</h3>
-        <div class="cost">$99 <small>/mese</small></div>
-        <p>Il preferito da chi ama le crociere!</p>
-        <ul>
-          <li>Sconto del 25% su tutte le crociere</li>
-          <li>Bonus crediti mensuali</li>
-          <li>Priorità nelle prenotazioni</li>
-          <li>Assicurazione viaggio inclusa</li>
-        </ul>
-        <a href="https://danielen_it.incruises.com/membership" class="btn">Scopri Premium</a>
-      </div>
-      <div class="price-card">
-        <h3>👑 ELITE</h3>
-        <div class="cost">$199 <small>/mese</small></div>
-        <p>Esperienza VIP completa</p>
-        <ul>
-          <li>Sconto fino al 35% su crociere</li>
-          <li>Massimi crediti premio e bonus</li>
-          <li>Concierge personale dedicato</li>
-          <li>Upgrade cabin gratuitamente</li>
-        </ul>
-        <a href="https://danielen_it.incruises.com/membership" class="btn">Accedi Elite</a>
-      </div>
+    </div>
+
+    <div class="trust-badge">
+      <p>🛡️ <strong>Tutti i pagamenti protetti da Trust My Travel</strong></p>
+      <p style="font-size: 0.9em; margin-top: 10px; color: #666;">Se inCruises dovesse fallire, riceverai il rimborso del valore non utilizzato</p>
     </div>
   </section>
 
   <section class="section">
-    <h2>📊 Esempi di Crociere Disponibili</h2>
-    <p>Prezzi minimi garantiti per due persone (esempi dimostrativi)</p>
-    <div class="pricing-grid">
-      <div class="price-card">
-        <h3>Caraibi Paradiso</h3>
-        <p>7 giorni - Partenza Miami</p>
-        <div class="cost">$599 <small>per persona</small></div>
-        <p><strong>Sconto inCruises:</strong> fino a $148 di risparmio!</p>
-        <p style="color: #28a745; font-weight: bold;">Prezzo garantito - Assicurazione Trust My Travel inclusa</p>
+    <h2>Richiedi Informazioni Sulle Nostre Crociere</h2>
+    <p>Compila il form e un consulente ti contatterà entro 24 ore</p>
+    <form action="https://docs.google.com/forms/d/e/1FAIpQLSc6-..." method="POST">
+      <div class="form-group">
+        <label for="nome">Nome Completo *</label>
+        <input type="text" id="nome" name="nome" required>
       </div>
-      <div class="price-card">
-        <h3>Mediterraneo Classico</h3>
-        <p>10 giorni - Roma, Atene, Istanbul</p>
-        <div class="cost">$899 <small>per persona</small></div>
-        <p><strong>Sconto inCruises:</strong> fino a $225 di risparmio!</p>
-        <p style="color: #28a745; font-weight: bold;">Prezzo garantito - Assicurazione Trust My Travel inclusa</p>
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" required>
       </div>
-      <div class="price-card">
-        <h3>Alaska Avventura</h3>
-        <p>8 giorni - Ghiacciai e natura selvaggia</p>
-        <div class="cost">$749 <small>per persona</small></div>
-        <p><strong>Sconto inCruises:</strong> fino a $187 di risparmio!</p>
-        <p style="color: #28a745; font-weight: bold;">Prezzo garantito - Assicurazione Trust My Travel inclusa</p>
+      <div class="form-group">
+        <label for="telefono">Telefono *</label>
+        <input type="tel" id="telefono" name="telefono" required>
       </div>
-    </div>
+      <div class="form-group">
+        <label for="interesse">Mi interessa principalmente: *</label>
+        <select id="interesse" name="interesse" required>
+          <option>Seleziona un'opzione</option>
+          <option>Diventare Membro inCruises</option>
+          <option>Diventare Partner (Opportunità di guadagno)</option>
+          <option>Prenotare una crociera</option>
+          <option>Ricevere più informazioni</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="messaggio">Messaggio</label>
+        <textarea id="messaggio" name="messaggio" rows="4"></textarea>
+      </div>
+      <button type="submit">Richiedi Informazioni</button>
+    </form>
   </section>
 
   <section class="section">
-    <h2>⭐ Cosa Dicono i Nostri Clienti</h2>
-    <p>Ultime recensioni verificate da Trustpilot - Aggiornate automaticamente</p>
-    <div id="reviewsSlider">
-      <div class="review-card">
-        <div class="stars">★★★★★</div>
-        <p>"Ho potuto viaggiare su 8 crociere grazie a inCruises. Non solo ho beneficiato io, ma ha permesso a mia nonna di 77 anni di fare la sua prima crociera. È incredibile quello che questa azienda può fare!"</p>
-        <div class="author">— Cliente verificato, Trustpilot</div>
-        <div class="date">📅 Settembre 2025</div>
-      </div>
-      <div class="review-card">
-        <div class="stars">★★★★★</div>
-        <p>"Io e mia moglie siamo tornati da una vacanza in crociera in Italia. È stato fantastico! Grazie mille per aver creato inCruises. Non avrei mai pensato di poter fare una vacanza in crociera così facilmente."</p>
-        <div class="author">— Cliente verificato, Trustpilot</div>
-        <div class="date">📅 Agosto 2025</div>
-      </div>
-      <div class="review-card">
-        <div class="stars">★★★★★</div>
-        <p>"Sono partner di inCruises da più di 2 anni. ❤️❤️❤️ Lo consiglio al 100% a chiunque ami viaggiare e anche a chi vuole fare affari. In due anni ho fatto 6 crociere meravigliose!"</p>
-        <div class="author">— Partner Partner, Trustpilot</div>
-        <div class="date">📅 Gennaio 2026</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>💼 Vuoi Guadagnare Condividendo?</h2>
-    <p>Diventa Partner di inCruises e guadagna fino al 35% di commissione ricorrente</p>
-    <a href="https://danielen_it.incruises.com/partner" class="btn">Scopri il Programma Partner</a>
-  </section>
-
-  <section class="partner-section">
-    <h2>🤝 Diventa Partner inCruises</h2>
-    <div class="partner-content">
-      <div class="partner-box">
-        <div>
-          <h3>Costo per Diventare Partner: $95</h3>
-          <p>Investimento una sola volta per iniziare a guadagnare</p>
-        </div>
-        <div>
-          <ul class="partner-benefits">
-            <li>Commissione ricorrente fino al 35%</li>
-            <li>Supporto marketing completo
+    <h2>📊 Cosa Dicono i Nostri Clienti Attivi</h2>
+    <p>Recensioni verificate da Trustpilot - Ultimi feedback dei nostri Membri e
