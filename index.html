@@ -43,10 +43,14 @@
     footer { background: #333; color: white; text-align: center; padding: 20px; margin-top: 50px; }
     #reviewsSlider { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 30px auto; padding: 0 20px; }
     .review-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #ffc107; min-height: 220px; }
+    .cruise-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #28a745; min-height: 200px; }
     .review-card .stars { color: #ffc107; font-size: 1.2em; margin-bottom: 10px; }
     .review-card p { color: #555; margin: 10px 0; font-size: 0.9em; line-height: 1.4; }
     .review-card .author { color: #0066cc; font-weight: bold; margin-top: 12px; font-size: 0.95em; }
     .review-card .date { color: #999; font-size: 0.85em; margin-top: 5px; }
+    .cruise-card h4 { color: #0066cc; margin-bottom: 10px; font-size: 1.2em; }
+    .cruise-card .price-info { background: #f0f8ff; padding: 12px; border-radius: 5px; margin: 10px 0; }
+    .cruise-card .savings { color: #28a745; font-weight: bold; font-size: 0.95em; }
     .trust-badge { background: #e8f4f8; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center; }
     .trust-badge strong { color: #0066cc; }
     @media (max-width: 768px) {
@@ -54,6 +58,7 @@
       .partner-box { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
       #reviewsSlider { grid-template-columns: 1fr; }
+      #cruisesSlider { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -75,7 +80,7 @@
         <h3>🌟 STARTER</h3>
         <div class="cost">$50 <small>/mese</small></div>
         <p><strong>Il trampolino di lancio!</strong></p>
-        <p style="color: #666; font-size: 0.9em; margin: 10px 0;">Costo di attivazione: $0</p>
+        <p style="color: #666; font-size: 0.9em; margin: 10px 0;">Costo di attivazione: $50</p>
         <ul>
           <li>100 Crediti Premio all'iscrizione</li>
           <li>50 Crediti Premio mensili</li>
@@ -123,10 +128,10 @@
 
       <!-- GRATUITA -->
       <div class="price-card">
-        <h3>🎁 GRATUITA </h3>
+        <h3>🎁 GRATUITA</h3>
         <div class="cost">$0 <small>/mese</small></div>
         <p><strong>Opzione economica!</strong></p>
-        <p style="color: #666; font-size: 0.9em; margin: 10px 0;"></p>
+        <p style="color: #666; font-size: 0.9em; margin: 10px 0;">Solo per Partner Attivi</p>
         <ul>
           <li>50 Crediti Premio all'iscrizione</li>
           <li>Accesso a INsider Pricing</li>
@@ -146,21 +151,10 @@
   </section>
 
   <section class="section">
-    <h2>Richiedi Informazioni Sulle Nostre Crociere</h2>
-    <p>Compila il form e un consulente ti contatterà entro 24 ore</p>
-    <form id="contactForm">
-      <div class="form-group">
-        <label for="nome">Nome Completo *</label>
-        <input type="text" id="nome" name="nome" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email *</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      <div class="form-group">
-        <label for="telefono">Telefono *</label>
-        <input type="tel" id="telefono" name="telefono" required>
-      </div>
-      <div class="form-group">
-        <label for="interesse">Mi interessa principalmente: *</label>
-        <select id="interesse" name="interesse
+    <h2>💰 Esempi di Crociere Prenotate con Crediti Premio</h2>
+    <p>Vedi i risparmi reali dei nostri Membri - Prezzi al pubblico vs Prezzi inCruises con Crediti Premio</p>
+    
+    <div id="cruisesSlider" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 30px auto; padding: 0 20px;">
+      <!-- CROCIERA 1 -->
+      <div class="cruise-card">
+        <h4>🚢 Carai
